@@ -28,6 +28,7 @@ img{
 
 .sign-up-btn{
     flex-direction: column;
+    cursor: pointer;
 }
 
 .sign-in-container{
@@ -42,6 +43,15 @@ img{
 
 span, .sign-in-link{
     font-size: 1rem;
+}
+
+@media (min-width: 800px) {
+    img{
+        width: 500px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
 }
 
 /* .container{
