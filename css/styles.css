@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body{
+    background: #6d6dff;
+    font-family: 'Poppins', sans-serif;
+}
+
+img{
+    max-width: 100%;
+}
+
+
+.slogan{
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    text-decoration: underline;
+}
+.sign-up-btn-container{
+    display: flex;
+    justify-content: center;
+}
+
+.sign-up-btn{
+    flex-direction: column;
+}
+
+.sign-in-container{
+    padding-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.sign-in-container > span{
+    color: #fff;
+}
+
+span, .sign-in-link{
+    font-size: 1rem;
+}
+
+/* .container{
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-radius: 3rem;
+    width: 65rem;
+    min-height: 35rem;
+}
+
+.todo{
+    background-color: lightskyblue;
+    width: 33%;
+    position: relative;
+    left: 273px;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+
+}
+
+.month-container{
+    border-radius: solid red 2px;
+    height: 2rem;
+}
+
+.month{
+    border: solid red 2px;
+
+}
+
+p{
+    font-size: larger;
+} */
