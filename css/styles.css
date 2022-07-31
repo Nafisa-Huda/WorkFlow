@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 *,
 *::before,
 *::after {
@@ -6,7 +6,7 @@
 }
 
 body{
-    background: #6d6dff;
+    background: #fff;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -18,17 +18,33 @@ img{
 .slogan{
     display: flex;
     justify-content: center;
-    color: #fff;
-    text-decoration: underline;
+    color: #6d6dff;
+    margin: inherit;
+    font-weight: 100;
 }
 .sign-up-btn-container{
     display: flex;
     justify-content: center;
+    padding-top: 1rem;
 }
 
 .sign-up-btn{
     flex-direction: column;
     cursor: pointer;
+    font-family: poppins;
+    font-weight: 600;
+    width: 8rem;
+    padding: 1rem;
+    border: none;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    background: #726efd;
+    color: #fff;
+}
+
+.sign-up-btn:hover{
+    background: #635ef9;
 }
 
 .sign-in-container{
@@ -38,7 +54,7 @@ img{
 }
 
 .sign-in-container > span{
-    color: #fff;
+    color: #6d6dff;
 }
 
 span, .sign-in-link{
