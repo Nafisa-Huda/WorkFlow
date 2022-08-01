@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://kit.fontawesome.com/a995213cd6.js" crossorigin="anonymous"></script>
+    <title>Home Page</title>
+</head>
+<body class="home-page-body">
+    <header class="home-page-header">
+        <i class="fa-solid fa-circle-user fa-2x"></i>
+        <section class="greeting">
+            <h1>Hi [NAME]</h1>
+            <h2>Today is [DATE]</h2>
+            <h2 class="quote">[QUOTE]</h2>
+        </section>
+
+    </header>
+    <main class="home-page-tasks-container">
+        <section class="tasks-btn-container">
+            <button class="tasks-btn">Tasks</button>
+            <button class="tasks-btn">In Progress</button>
+            <button class="tasks-btn">Completed</button>
+        </section>
+        <h1 class="home-page-tasks-heading">All Tasks</h1>
+        <ul class="tasks-ul">
+            <li class="task-li-item">
+                <i class="fa-solid fa-list"></i> 
+                <p>Test Task</p> 
+            </li>
+        </ul>
+    </main>
+    <nav class="tab-bar">
+        <ul>
+            <li class="list active"><i class="fa-solid fa-house"></i></li>
+            <li class="list"><i class="fa-solid fa-calendar"></i></li>
+            <li class="list"><i class="fa-solid fa-list"></i></li>
+            <li class="list"><i class="fa-solid fa-clock"></i></li>
+        </ul>
+    </nav>
+    <script src="js/main.js"></script>
+</body>
+</html>
