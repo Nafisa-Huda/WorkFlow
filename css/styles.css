@@ -132,9 +132,14 @@ span, .sign-in-link{
     margin: 1rem;
 }
 
+.tasks-ul{
+    display: flex;
+    flex-direction: column;
+}
+
 .task-li-item{
     list-style: none;
-    margin-left: 1rem;
+    margin-bottom: 1rem;
     min-height: 1em;
     min-width: 22rem;
     padding: 1rem;
@@ -189,15 +194,86 @@ li{
     }
 }
 
-/* .container{
-    display: flex;
-    justify-content: center;
-    background-color: white;
-    border-radius: 3rem;
-    width: 65rem;
-    min-height: 35rem;
+.calendar-page-body{
+    background: #edf1ff;
 }
 
+ .calendar-container{
+    display: flex;
+    flex-direction: column;
+    background: #6d6dff;
+    border-radius: 3rem;
+    min-height: 25rem;
+    margin: 1rem;
+}
+
+.calendar{
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+
+}
+
+.month, .year{
+    margin: 1rem 1rem 0rem 0rem;
+    font-family: 'poppins';
+    font-weight: 600;
+    width: 6rem;
+    height: 2rem;
+    padding-left: 0.3rem;
+    display: flex;
+    border: none;
+    border-radius: 0.5rem;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.calendar-days{
+    margin-top: 1rem;
+    padding-bottom: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    justify-items: center;
+    font-family: 'poppins';
+}
+
+.calendar-dates {
+    padding-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: #fff;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+
+.calendar-date{
+    text-align: center;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 2rem;
+    font-family: 'poppins';
+    font-weight: 600;
+}
+
+.events-and-tasks{
+    display: flex;
+    justify-content: space-around;
+}
+
+.events-btn, .tasks-btn{
+    font-family: 'poppins';
+    font-weight: 600;
+    font-size: larger;
+    width: 9rem;
+    height: 3rem;
+    border: none;
+    border-radius: 2rem;
+    background: #6d6dff;
+}
+
+/*
 .todo{
     background-color: lightskyblue;
     width: 33%;
