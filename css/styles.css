@@ -83,11 +83,13 @@ span, .sign-in-link{
     color: #fff;
     margin-top: 1rem;
     display: flex;
-    width: 19rem;
-    height: 8rem;
+    font-size: inherit;
+    padding: 1rem;
+    width: 20rem;
+    height: 8.5rem;
     border-radius: 1rem;
-    justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 
@@ -265,12 +267,16 @@ li{
 .events-btn, .tasks-btn{
     font-family: 'poppins';
     font-weight: 600;
-    font-size: larger;
+    font-size: medium;
+    padding: 3px;
+    display: flex;
     width: 9rem;
     height: 3rem;
     border: none;
     border-radius: 2rem;
     background: #6d6dff;
+    justify-content: center;
+    align-items: center;
 }
 
 /*
