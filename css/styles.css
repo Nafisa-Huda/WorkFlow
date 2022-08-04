@@ -216,7 +216,7 @@ li{
 
 }
 
-.month, .year{
+/* .month, .year{
     margin: 1rem 1rem 0rem 0rem;
     font-family: 'poppins';
     font-weight: 600;
@@ -229,7 +229,7 @@ li{
     flex-direction: row;
     justify-content: center;
     align-content: center;
-}
+} */
 
 .calendar-days{
     margin-top: 1rem;
@@ -249,7 +249,7 @@ li{
     border-bottom-right-radius: 2rem;
 }
 
-.calendar-date{
+.days{
     text-align: center;
     text-align: center;
     display: flex;
@@ -277,6 +277,22 @@ li{
     background: #6d6dff;
     justify-content: center;
     align-items: center;
+}
+
+.month{
+    display: flex;
+    justify-content: center;
+    font-family: 'poppins';
+    font-size: medium;
+    color: white;
+}
+
+.date{
+    display: flex;
+    justify-content: center;
+    font-family: 'poppins';
+    font-size: small;
+    color: white;
 }
 
 /*

@@ -9,7 +9,7 @@
     <title>Workflow</title>
 </head>
 <body class="calendar-page-body">
-    <h1>[Insert Calendar Type]</h1>
+    <!-- <h1>[Insert Calendar Type]</h1>
     <main class="calendar-container">
         <div class="calendar">
             <select class="month" name="Month" required="">
@@ -63,8 +63,34 @@
             <div class="calendar-date"><span>30</span></div>
             <div class="calendar-date"><span>31</span></div>
         </section>
-    </main>
+    </main> -->
     
+    <div class="calendar-container">
+        <div class="calendar">
+          <div class="month">
+            <i class="fas fa-angle-left prev"></i>
+            <div class="date">
+              <h1></h1>
+              <p></p>
+            </div>
+            <i class="fas fa-angle-right next"></i>
+          </div>
+          <section class="calendar-days">
+            <div>M</div>
+            <div>T</div>
+            <div>W</div>
+            <div>T</div>
+            <div>F</div>
+            <div>S</div>
+            <div>S</div>
+        </section>
+        <section class="calendar-dates">
+            <div class="days"></div>
+        </section>
+        </div>
+      </div>
+
+
     <section class="events-and-tasks">
         <button class="events-btn">Events</button>
         <button class="events-btn">Tasks</button>
@@ -78,5 +104,6 @@
             <li class="list"><i class="fa-solid fa-clock"></i></li>
         </ul>
     </nav>
+    <script src="js/main.js"></script>
 </body>
 </html>
