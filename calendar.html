@@ -9,64 +9,9 @@
     <title>Workflow</title>
 </head>
 <body class="calendar-page-body">
-    <!-- <h1>[Insert Calendar Type]</h1>
-    <main class="calendar-container">
-        <div class="calendar">
-            <select class="month" name="Month" required="">
-                <option>May</option>
-            </select>
-            <select class="year" name="Year" required="">
-                <option>2022</option>
-            </select>
-        </div>
-        <section class="calendar-days-container">
-            <section class="calendar-days">
-                <div>M</div>
-                <div>T</div>
-                <div>W</div>
-                <div>T</div>
-                <div>F</div>
-                <div>S</div>
-                <div>S</div>
-            </section>
-        </section>
-        <section class="calendar-dates">
-            <div class="calendar-date"><span>1</span></div>
-            <div class="calendar-date"><span>2</span></div>
-            <div class="calendar-date"><span>3</span></div>
-            <div class="calendar-date"><span>4</span></div>
-            <div class="calendar-date"><span>5</span></div>
-            <div class="calendar-date"><span>6</span></div>
-            <div class="calendar-date"><span>7</span></div>
-            <div class="calendar-date"><span>8</span></div>
-            <div class="calendar-date"><span>9</span></div>
-            <div class="calendar-date"><span>10</span></div>
-            <div class="calendar-date"><span>11</span></div>
-            <div class="calendar-date"><span>12</span></div>
-            <div class="calendar-date"><span>13</span></div>
-            <div class="calendar-date"><span>14</span></div>
-            <div class="calendar-date"><span>15</span></div>
-            <div class="calendar-date"><span>16</span></div>
-            <div class="calendar-date"><span>17</span></div>
-            <div class="calendar-date"><span>18</span></div>
-            <div class="calendar-date"><span>19</span></div>
-            <div class="calendar-date"><span>20</span></div>
-            <div class="calendar-date"><span>21</span></div>
-            <div class="calendar-date"><span>22</span></div>
-            <div class="calendar-date"><span>23</span></div>
-            <div class="calendar-date"><span>24</span></div>
-            <div class="calendar-date"><span>25</span></div>
-            <div class="calendar-date"><span>26</span></div>
-            <div class="calendar-date"><span>27</span></div>
-            <div class="calendar-date"><span>28</span></div>
-            <div class="calendar-date"><span>29</span></div>
-            <div class="calendar-date"><span>30</span></div>
-            <div class="calendar-date"><span>31</span></div>
-        </section>
-    </main> -->
     
-    <div class="calendar-container">
-        <div class="calendar">
+    <main class="calendar-container">
+        <section class="calendar">
           <div class="month">
             <i class="fas fa-angle-left prev"></i>
             <div class="date">
@@ -76,19 +21,19 @@
             <i class="fas fa-angle-right next"></i>
           </div>
           <section class="calendar-days">
-            <div>M</div>
-            <div>T</div>
-            <div>W</div>
-            <div>T</div>
-            <div>F</div>
-            <div>S</div>
-            <div>S</div>
+              <div>M</div>
+              <div>T</div>
+              <div>W</div>
+              <div>T</div>
+              <div>F</div>
+              <div>S</div>
+              <div>S</div>
+          </section>
+          <section class="calendar-dates">
+              <div class="days"></div>
+          </section>
         </section>
-        <section class="calendar-dates">
-            <div class="days"></div>
-        </section>
-        </div>
-      </div>
+    </main>
 
 
     <section class="events-and-tasks">
@@ -98,7 +43,7 @@
 
     <nav class="tab-bar">
         <ul>
-            <li class="list active"><a href="homePage.html"><i class="fa-solid fa-house"></i></a></li>
+            <li class="list"><a href="homePage.html"><i class="fa-solid fa-house"></i></a></li>
             <li class="list"><a href="calendar.html"><i class="fa-solid fa-calendar"></i></a></li>
             <li class="list"><i class="fa-solid fa-list"></i></li>
             <li class="list"><i class="fa-solid fa-clock"></i></li>
