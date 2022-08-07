@@ -1,17 +1,17 @@
-const list = document.querySelectorAll(".list");
-list.forEach((clickedList)=>{
-    clickedList.addEventListener('click',()=>{
-        list.forEach((list=>{
-            list.classList.remove("active");
-        }))
-        clickedList.classList.add("active");
-        const clickedTabBGColor=getComputedStyle
-        (clickedList).getPropertyValue(
-            "color"
-        );
-        // document.body.style.background=clickedTabBGColor;
-    });
-});
+// const list = document.querySelectorAll(".list");
+// list.forEach((clickedList)=>{
+//     clickedList.addEventListener('click',()=>{
+//         list.forEach((list=>{
+//             list.classList.remove("active");
+//         }))
+//         clickedList.classList.add("active");
+//         const clickedTabBGColor=getComputedStyle
+//         (clickedList).getPropertyValue(
+//             "color"
+//         );
+//         // document.body.style.background=clickedTabBGColor;
+//     });
+// });
 
 
 //motivational quotes
@@ -34,7 +34,7 @@ function getFetch(){
 const date = new Date();
 
 const renderCalendar = () => {
-  date.setDate(1);
+  date.setDate(1); //Sets the numeric value of the day of the month to 1
 
   const monthDays = document.querySelector(".days");
 
@@ -50,15 +50,15 @@ const renderCalendar = () => {
     0
   ).getDate(); //Gets the last day of the previous month 
 
-  const firstDayOfMonthIndex = date.getDay(); //index number of the first day of the month
+  const firstDayOfMonthIndex = date.getDay(); //returns the index number of the first day of the month
 
   const lastDayOfMonthIndex = new Date(
     date.getFullYear(),
     date.getMonth() + 1,
     0
-  ).getDay(); //returns index of last day of the month
+  ).getDay(); //returns the index number of the last weekday of the current month
 
-  const nextDays = 7 - lastDayOfMonthIndex - 1; //returns 
+  const nextDays = 7 - lastDayOfMonthIndex - 1; //To display 6 days FROM the first day of the next month 
 
   const months = [
     "January",
@@ -83,11 +83,11 @@ const renderCalendar = () => {
 
   for (let x = firstDayOfMonthIndex; x > 0; x--) {
     days += `<div class="prev-date">${prevlastDayOfMonth - x + 1}</div>`;
-  } //For the previous month dates in the calendar 
+  } //Displays the previous month dates in the calendar 
 
-  for (let i = 1; i <= lastDayOfMonth; i++) {
+  for (let i = 1; i <= lastDayOfMonth; i++) { //Display all the days in the calender, i.e., days 1-31
     if (i === new Date().getDate() && date.getMonth() === new Date().getMonth()) {
-     days += `<div class="today">${i}</div>`;
+     days += `<div class="today">${i}</div>`; //'days' equals the cuurent day it is, i.e, the highlighted day in the calendar 
     } else {
       days += `<div>${i}</div>`;
     }

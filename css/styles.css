@@ -120,7 +120,7 @@ span, .sign-in-link{
 
 .tasks-btn-container{
     display: flex;
-
+    padding: 0rem 1rem 0rem 1rem;
 }
 
 .tasks-btn{
@@ -187,18 +187,14 @@ li{
 
 }
 
+/* Calendar Page */
 
-@media (min-width: 800px) {
-    img{
-        width: 500px;
-        margin: auto;
-        display: flex;
-        justify-content: center;
-    }
-
-    .sign-up-btn-container{
-        margin-top: 4rem;
-    }
+.calendar-type-name{
+    text-align: center;
+    text-decoration: underline;
+    opacity: 0.6;
+    cursor: pointer;
+    padding-top: 1rem;
 }
 
 .calendar-page-body{
@@ -301,6 +297,22 @@ li{
     justify-content: center;
     align-items: center;
 }
+
+
+
+@media (min-width: 800px) {
+    img{
+        width: 500px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    .sign-up-btn-container{
+        margin-top: 4rem;
+    }
+}
+
 
 
 
