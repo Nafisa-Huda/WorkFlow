@@ -21,11 +21,30 @@ img{
     color: #6d6dff;
     margin: inherit;
     font-weight: 100;
+    text-decoration: underline;
 }
-.sign-up-btn-container{
+
+.app-blurb{
     display: flex;
     justify-content: center;
-    margin-top: 21rem;
+    text-align: center;
+    margin: 1rem;
+    background: #6d6dff;
+    color: #fff;
+    border: none;
+    border-radius: 2rem;
+    padding: 1rem;
+    line-height: 2rem;
+    font-size: medium;
+    font-weight: 600;
+}
+
+.sign-up-btn-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 9rem;
+    align-items: center;
 }
 
 .sign-up-btn{
@@ -47,18 +66,21 @@ img{
     background: #635ef9;
 }
 
-.sign-in-container{
-    padding-top: 1rem;
+
+.sign-in-btn{
+    flex-direction: column;
+    cursor: pointer;
+    font-family: poppins;
+    font-weight: 600;
+    width: 8rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 2rem;
     display: flex;
-    justify-content: center;
-}
-
-.sign-in-container > span{
-    color: #6d6dff;
-}
-
-span, .sign-in-link{
-    font-size: 1rem;
+    align-items: center;
+    background: #8e8ae8;
+    color: #fff;
 }
 
 /* home page */
@@ -300,7 +322,36 @@ li{
 
 
 
-@media (min-width: 800px) {
+@media only screen and (min-width: 768px) {
+
+    .index-wrapper{
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+    }
+
+    .slogan-wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem;
+        width: 50%;
+    }
+
+    .slogan{
+        margin-bottom: 1rem;
+    }
+
+
+    .app-blurb{
+        background: none;
+        border-radius: 0rem;
+        color: black;
+        text-align: inherit;
+        padding: 0rem;
+        margin: 0rem;
+    }
+
     img{
         width: 500px;
         margin: auto;
@@ -309,7 +360,7 @@ li{
     }
 
     .sign-up-btn-container{
-        margin-top: 4rem;
+        margin-top: 1rem;
     }
 }
 
