@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<head>
+<title>Todo App</title>
+<!--STYLESHEET LINK-->
+<link rel="stylesheet" href="/styles.css">
+<!--GOOGLE FONT-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@500&display=swap" rel="stylesheet">
+<!--ICONS-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+
+<body class="bg-indigo-200">
+    <nav class="relative container mx-auto p-6">
+        <!-- Flex container -->
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
+          <!-- <div class="pt-2">
+            <img src="img/logo.svg" alt="" />
+          </div> -->
+          <!-- Menu Items -->
+          <div class="hidden space-x-6 md:flex">
+            <a href="#">Home</a>
+            <a href="calendar.ejs">Calendar</a>
+            <a href="#">Pomodoro Clock</a>
+            <a href="#">Account</a>
+          </div>
+          <!-- Hamburger Icon -->
+          <button id="menu-btn" class="block hamburger md:hidden focus:outline-none">
+            <i class="fa-solid fa-bars"></i>      
+            <span class="hamburger-top"></span>
+            <span class="hamburger-middle"></span>
+            <span class="hamburger-bottom"></span>
+          </button>
+        </div>
+  
+        <!-- Mobile Menu -->
+        <div class="md:hidden">
+          <div
+            id="menu"
+            class="absolute flex-col items-center hidden self-end py-8 mt-10 space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md"
+          >
+          <a href="#">Home</a>
+          <a href="calendar.ejs">Calendar</a>
+          <a href="#">Pomodoro Clock</a>
+          <a href="#">Account</a>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container w-full max-w-2xl mx-auto" id="app">
+        <div class="text-3xl text-center font-bold mb-3 uppercase">Todo List</div>
+            <form action="/" method="POST" class="flex flex-col todo-header">
+                <input type="text" name="title" placeholder="Enter Todo" class="text-xl mb-8 text-black-800 py-2 px-5 bg-indigo-100">
+                <textarea rows="6" cols="45" name="content" placeholder="Enter Details" class="text-xl text-black-800 py-2 px-5 bg-indigo-100"></textarea>
+                <div>
+                    <button type="submit" class="my-8 bg-indigo-500	 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full max-w-2xl">Add</button>
+                </div>
+            </form>
+        <div class="bg-gray-100 mt-5 p-5 rounded-xl shadow-lg text-gray-700">
+            <h1 class="font-bold text-xl italic block my-8 leading-none">Todo's</h1>
+            <div class="max-h-80 overflow-y-auto">
+                <table id="todo_table" class="table rounded-t-lg w-full bg-indigo-500">
+                    <thead>
+                        <tr>
+                            <th class="text-left px-1 py-2 bg-indigo-500 text-white rounded-tl-xl">Title</th>
+                            <th class="text-left px-1 py-2 bg-indigo-500 text-white">Details</th>
+                            <th class="px-1 py-2 bg-indigo-500 text-white rounded-tr-xl">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ul class="list-none todo-list odd:bg-orange-100 even:bg-orange-50 transition duration-300">
+                            <td class="text-center px-1 py-2 text-orange-800">
+                                <% todoTasks.forEach(details => { %>
+                                    <li class="todo-list-item bg-indigo-100 flex flex-row px-1 py-2 text-orange-800">
+                                        <div class="text-center px-1 py-2 text-orange-800"><%= details.title %></div>
+                                        <div class="px-1 py-2 text-orange-800"><%= details.content %></div>
+                                        <div class="text-center  px-1 py-2 text-orange-800 flex gap-3 justify-start">
+                                            <a href="/edit/<%= details._id %>" class="edit h-6 w-6">
+                                                <span class="fas fa-edit items-baseline"></span>
+                                            </a>
+                                            <a href="/edit/remove/<%= details._id %>" class="remove h-6 w-6">
+                                                <span class="fas fa-times items-baseline"></span>
+                                            </a>
+                                        </div>
+                                    </li>
+                                <% }) %>
+                            </td>
+                        </ul>
+                    </tbody>
+                </table>
+            </div>  
+        </div>
+    </div>
+    <script src="/main.js"></script>
+</body>

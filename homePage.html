@@ -9,6 +9,27 @@
     <title>Home Page</title>
 </head>
 <body class="home-page-body">
+    <nav class="desktop-nav">
+        <ul class="desktop-nav-ul">
+            <li class="desktop-nav-li"><i class="fa-solid fa-bars" onclick="openNav()"></i></li>
+            <li class="desktop-nav-li"><i class="fa-solid fa-house"></i></li>
+            <li><i class="fa-solid fa-circle-user fa-2x desktop-user"></i></li>
+        </ul>
+        <div class="search-container">
+            <input type="search" class="search" placeholder="Search">
+            <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </nav>
+    
+    <aside id="sidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="calendar.html">Calendar</a>
+        <a href="#">To-do List</a>
+        <a href="#">Pomodoro Clock</a>
+    </aside>
+    
+    
+    
     <header class="home-page-header">
         <i class="fa-solid fa-circle-user fa-2x"></i>
         <section class="greeting">
@@ -22,14 +43,15 @@
     <main class="home-page-tasks-container">
         <section class="tasks-btn-container">
             <button class="tasks-btn">Tasks</button>
-            <button class="tasks-btn">In Progress</button>
             <button class="tasks-btn">Completed</button>
+            <button class="add-task-btn"><i class="fa-solid fa-plus"></i></button>
         </section>
         <h1 class="home-page-tasks-heading">All Tasks</h1>
         <ul class="tasks-ul">
             <li class="task-li-item">
                 <i class="fa-solid fa-list"></i> 
                 <p>Test Task</p> 
+                <i class="fa-solid fa-trash-can"></i>
             </li>
             <li class="task-li-item">
                 <i class="fa-solid fa-list"></i> 

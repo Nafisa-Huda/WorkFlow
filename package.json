@@ -1,5 +1,38 @@
 {
   "dependencies": {
-    "bootstrap": "^5.2.0"
-  }
+    "bootstrap": "^5.2.0",
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "mongodb": "^4.9.0",
+    "mongoose": "^6.5.3",
+    "nodemon": "^2.0.19",
+    "passport": "^0.6.0",
+    "passport-azure-ad": "^4.3.4"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.1.8"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "tailwindcss -i ./views/input.css -o ./public/styles.css", 
+    "watch": "tailwindcss -i ./views/input.css -o ./public/styles.css --watch"
+
+  },
+  "name": "workflow",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nafisa-Huda/WorkFlow.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nafisa-Huda/WorkFlow/issues"
+  },
+  "homepage": "https://github.com/Nafisa-Huda/WorkFlow#readme",
+  "description": ""
 }
