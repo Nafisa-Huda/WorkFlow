@@ -8,6 +8,14 @@ content: {
     type: String,
     required: true
 },
+dueDate: {
+    type: String,
+    required: false
+},
+priority: {
+    type: String,
+    required: true
+},
 date: {
     type: Date,
     default: Date.now

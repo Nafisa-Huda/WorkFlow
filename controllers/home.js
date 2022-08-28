@@ -14,7 +14,9 @@ module.exports = {
         const todoTask = new TodoTask(
             {
                 title: req.body.title,
-                content: req.body.content
+                content: req.body.content,
+                dueDate: req.body.dueDate,
+                priority: req.body.priority
             });
         try {
             await todoTask.save();

@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* .todo-list, .todo-ul-heading{
+    list-style: none;
+} */
+
+.todo-list-heading{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-weight: bolder;
+}
+
+.fas{
+    color: #fff;
+}
+
+/* .todo-list-item{
+    color: #fff;
+    background-color: rgb(99 102 241);
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todo-list-item-content {
+    font-size: .8rem;
+    margin-left: 10px;
+    margin-right: 10px;
+} */
+
+.todo-list-item .edit {
+    color: ≈;
+    margin-right: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: auto;
+}
+
+.todo-list-item .remove {
+    color: #fff;
+    margin-right: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
