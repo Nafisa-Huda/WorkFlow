@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./views/index.ejs"],
+  content: [
+  "./views/index.ejs",
+  "./*.html"
+  ],
   theme: {
     screens: {
       sm: '480px',
@@ -9,9 +12,9 @@ module.exports = {
       xl: '1440px'
     },
     extend: {
-      // colors: {
-      //   veryLightBlue: '#edf1ff',
-      // },
+      height: {
+        '140': '40rem',
+      },
     },
   },
   plugins: [],

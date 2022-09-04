@@ -6,7 +6,6 @@
 //Declare Variables
 const express = require("express");
 const app = express();
-const PORT = 8001;
 const mongoose = require("mongoose");
 const connectDB = require("./config/database");
 //const TodoTask = require("./models/TodoTask");
@@ -29,4 +28,6 @@ app.use('/edit', editRoutes)
 // app.use('/calendar', calendarRoutes)
 
 //Start Server
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(process.env.PORT, ()=>{
+    console.log('Server is running, you better catch it!')
+}) 

@@ -639,6 +639,14 @@ video {
   z-index: 50;
 }
 
+.m-3\.5 {
+  margin: 0.875rem;
+}
+
+.m-3 {
+  margin: 0.75rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -705,6 +713,14 @@ video {
   height: 1.5rem;
 }
 
+.h-140 {
+  height: 40rem;
+}
+
+.h-96 {
+  height: 24rem;
+}
+
 .max-h-80 {
   max-height: 20rem;
 }
@@ -719,6 +735,10 @@ video {
 
 .w-6 {
   width: 1.5rem;
+}
+
+.w-80 {
+  width: 20rem;
 }
 
 .max-w-md {
@@ -745,6 +765,10 @@ video {
   align-items: baseline;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .justify-between {
   justify-content: space-between;
 }
@@ -763,6 +787,10 @@ video {
 
 .self-end {
   align-self: flex-end;
+}
+
+.overflow-auto {
+  overflow: auto;
 }
 
 .overflow-y-auto {
@@ -1012,6 +1040,113 @@ video {
   margin-right: 5px;
   cursor: pointer;
   text-decoration: none;
+}
+
+.calendar-container{
+  background: #6d6dff;
+  border-radius: .5rem;
+  min-height: 25rem;
+  margin: 1rem;
+}
+
+.calendar{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.month{
+  display: flex;
+  justify-content: center;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: medium;
+  color: white;
+}
+
+.date{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: small;
+  color: white;
+}
+
+.fa-angle-left, .fa-angle-right{
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+
+.calendar-body{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.days{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+  text-align: center;
+  height: 19rem;
+  font-weight: 600;
+}
+
+.calendar-days{
+  margin-top: 1rem;
+  padding-bottom: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-items: center;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.calendar-dates {
+  background: #fff;
+  border-bottom-left-radius: .5rem;
+  border-bottom-right-radius: .5rem;
+}
+
+.today{
+  background: #6d6dff;
+  justify-content: center;
+  border-radius: 1rem;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+.prev-date, .next-date{
+  opacity: 0.5;
+}
+
+@media only screen and (min-width: 768px) {
+  .calendar-container {
+    max-width: 60rem;
+    height: 40rem;
+  }
+
+  .calendar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .days {
+    height: 34rem;
+  }
+
+  .cal-aside-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .hover\:bg-indigo-800:hover {
