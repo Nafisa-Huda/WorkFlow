@@ -1,0 +1,31 @@
+<div class="events-container">
+  <aside class="events-aside">
+    <section class="events-list-section">
+      <div class="date pb-2.5">
+        <p class="font-bold"></p>
+      </div>
+      <div class="events">Event 1</div>
+      <div class="events">Event 2</div>
+      <div class="events">Event 3</div>
+      <button id="openModal" class="openModal">Add Event</button>
+    </section>
+    <section class="calendar-filters">
+      <h3 class="calendar-filter-heading">My Calendars</h3>
+      <div>
+        <div>
+          <input type="checkbox" name="personal" />
+          <label class="filter" for="personal">Personal</label>
+        </div>
+        <div>
+          <input type="checkbox" name="Class" />
+          <label class="filter" for="Class">Class</label>
+        </div>
+        <div>
+          <input type="checkbox" name="Events" />
+          <label class="filter" for="Events">Events</label>
+        </div>
+      </div>
+    </section>
+  </aside>
+</div>
+<%-include("./modal.ejs")%>

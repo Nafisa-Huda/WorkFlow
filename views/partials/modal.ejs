@@ -1,0 +1,48 @@
+<!-- Modal -->
+<div id="modal" aria-hidden="true" class="modal">
+  <div class="idk">
+    <!-- Modal content -->
+    <div class="modal-content-container">
+      <div class="idk2">
+        <h3>Add an event</h3>
+        <form action="/events/createEvent" method="POST" class="">
+          <div>
+            <label class="modal-label">Title</label>
+            <input
+              type="text"
+              name="title"
+              class="modal-input"
+              placeholder="Title"
+              required
+            />
+          </div>
+          <div>
+            <label class="modal-label">Event Description</label>
+            <input
+              type="text"
+              name="eventDescription"
+              class="modal-input"
+              placeholder="Event Description"
+            />
+          </div>
+          <div>
+            <label for="date" class="modal-label">Date</label>
+            <input type="date" name="date" class="modal-input" required />
+          </div>
+          <div>
+            <label for="Repeat" class="modal-label">Repeat</label>
+            <select name="repeat" class="model-select">
+              <option value="Everyday">Everyday</option>
+              <option value="Every Week">Every week</option>
+              <option value="Everyday Weekday">Everyday Weekday</option>
+              <option value="Everyday Other Week">Every other week</option>
+              <option value="Everyday Month">Every Month</option>
+            </select>
+          </div>
+          <button type="submit" class="">Add</button>
+          <button type="submit" id="closeModal" class="">Close</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
