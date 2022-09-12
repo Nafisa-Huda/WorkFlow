@@ -1,0 +1,49 @@
+<%-include("./partials/todoModal.ejs")%>
+<%-include("./partials/detailsModal.ejs")%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <section class="greeting-wrapper">
+        <div class="name-container">
+            <textarea id="name" cols="40" placeholder="Hi <%= user.userName %>, what is your goal for today?"></textarea>
+        </div>
+    </section>
+    <h1 class="todosHeading">Ongoing Todos</h1>
+    <section class="todoListContainer">
+        <div class="todoList">
+            <% todos.forEach( el => { %>
+                    <div class='todoItem' data-id='<%=el._id%>'>
+                        <span id="todoTitle" class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                        <span><%= el.dueDate %></span>
+                        <span class='del'> Delete </span>                        
+                        <button class="openDetailsModal">Details</button>
+                    </div>
+            <% }) %>    
+        </div>
+    </section>
+    <button class="openModal">Add Event</button>
+    <section class="evaluation">
+        <h2 class="evaluationHeading">Evaluation</h2>
+        <div class="evaluationItemsContainer">
+            <div class="itemsLeft">
+                <h3><%= left %> things to do.</h3>
+            </div>
+            <div class="itemsCompleted">
+                <h3><%= completed %> completed todos.</h3>
+            </div>
+        </div>
+    </section>
+
+    <a href="/logout">Logout</a>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
+
