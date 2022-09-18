@@ -1,48 +1,52 @@
-<%-include("./partials/todoModal.ejs")%>
-<%-include("./partials/detailsModal.ejs")%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/211eaa680e.js" crossorigin="anonymous"></script>
     <title>Todos</title>
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <section class="greeting-wrapper">
-        <div class="name-container">
-            <textarea id="name" cols="40" placeholder="Hi <%= user.userName %>, what is your goal for today?"></textarea>
-        </div>
-    </section>
-    <h1 class="todosHeading">Ongoing Todos</h1>
-    <section class="todoListContainer">
-        <div class="todoList">
-            <% todos.forEach( el => { %>
-                    <div class='todoItem' data-id='<%=el._id%>'>
-                        <span id="todoTitle" class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-                        <span><%= el.dueDate %></span>
-                        <span class='del'> Delete </span>                        
-                        <button class="openDetailsModal">Details</button>
-                    </div>
-            <% }) %>    
-        </div>
-    </section>
-    <button class="openModal">Add Event</button>
-    <section class="evaluation">
-        <h2 class="evaluationHeading">Evaluation</h2>
-        <div class="evaluationItemsContainer">
-            <div class="itemsLeft">
-                <h3><%= left %> things to do.</h3>
+    <section class="todosSectionContainer">
+        <section class="todosHeadingContainer">
+            <h1 class="todosHeading">All Todos</h1> 
+            <i class="fa-solid fa-plus openModal"></i>
+        </section>
+        <section class="todoListContainer">
+                <div class="todoList">
+                    <% todos.forEach( el => { %>
+                            <div class='todoItem' data-id='<%=el._id%>'>
+                                <span id="todoTitle" class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                                <span class="tag">Due on <%= el.dueDate %></span>
+                                <span class="tag"><%= el.listType %></span>
+                                <span class="tag"><%= el.priority %></span>
+                                <form action="/todos/deleteTodo/<%=el._id%>?_method=DELETE" method="POST" class="col-3">
+                                    <div class="todoListIcons">
+                                        <button class="fa-solid fa-trash del" type="submit"></button>
+                                        <i class="fa-solid fa-circle-info openDetailsModal"></i>
+                                    </div>
+                                </form>
+                            </div>                    
+                    <% }) %>    
+                </div>
+        </section>
+        <section class="evaluation">
+            <h2 class="evaluationHeading">Evaluation</h2>
+            <div class="evaluationItemsContainer">
+                <div class="itemsLeft">
+                    <h3><%= left %> things to do.</h3>
+                </div>
+                <div class="itemsCompleted">
+                    <h3><%= completed %> completed todos.</h3>
+                </div>
             </div>
-            <div class="itemsCompleted">
-                <h3><%= completed %> completed todos.</h3>
-            </div>
-        </div>
+        </section>
     </section>
-
-    <a href="/logout">Logout</a>
-
+    <%-include("./partials/nav.ejs")%>
+    <%-include("./partials/todoModal.ejs")%>
+    <%-include("./partials/listTypeModal.ejs")%>
     <script src="/js/main.js"></script>
 </body>
 </html>

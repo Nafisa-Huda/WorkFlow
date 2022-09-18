@@ -6,10 +6,14 @@ const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const flash = require('express-flash')
+const methodOverride = require("method-override");
 const logger = require('morgan')
 const connectDB = require('./config/database')
 const mainRoutes = require("./routes/main");
-//const TodoTask = require("./models/TodoTask");
+const todosRoutes = require('./routes/todos')
+const homePageRoutes = require('./routes/homePage')
+
+// const event = require("./models/event");
 // const editRoutes = require("./routes/edit");
 
 
@@ -21,14 +25,18 @@ require("./config/passport")(passport);
 
 connectDB()
 
-//Set Middleware
+//Set All Middleware
 app.set("view engine", "ejs");
 app.use(express.static('public'))
+//Body Parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+//Logging
 app.use(logger("dev"));
+//Use forms for put / delete
+app.use(methodOverride("_method"));
 
-// Sessions
+// Setup Sessions - stored in MongoDB
 app.use(
   session({
     secret: "keyboard cat",
@@ -42,12 +50,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Use flash messages for errors, info, ect...
 app.use(flash());
 
 //Set Routes
 app.use('/', mainRoutes)
-// app.use('/home', homeRoutes)
-// app.use('/edit', editRoutes)
+app.use('/todos', todosRoutes)
+app.use('/homePage', homePageRoutes)
 
 //Start Server
 app.listen(process.env.PORT, ()=>{
