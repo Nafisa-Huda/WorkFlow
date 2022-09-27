@@ -1,0 +1,54 @@
+<!-- Modal -->
+<div aria-hidden="true" class="todoModal">
+  <div class="modal">
+    <!-- Modal content -->
+    <div class="modal-content-container">
+      <div class="modal-content">
+        <h3>Add A Todo Item</h3>
+        <form action="/todos/createTodo" method="POST" class="">
+          <div>
+            <label class="modal-label">Title</label>
+            <input
+              type="text"
+              name="todoItem"
+              class="modal-input"
+              placeholder="Title"
+              required
+            />
+          </div>
+          <div>
+            <label class="modal-label">Todo Description</label>
+            <input
+              type="text"
+              name="todoDescription"
+              class="modal-input"
+              placeholder="Todo Description"
+            />
+          </div>
+          <div>
+            <label for="dueDate" class="modal-label">Due Date</label>
+            <input type="date" name="dueDate" class="modal-input" />
+          </div>
+          <div>
+            <label for="Priority" class="modal-label">Priority</label>
+            <select name="priority" class="model-select">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div>
+            <label for="List Type" class="modal-label">List Type</label>
+            <select name="listType" class="model-select">
+              <option value="Personal">Personal</option>
+              <option value="Work">Work</option>
+              <option value="Chores">Chores</option>
+            </select>
+          </div>
+          <button type="submit" class="">Add</button>
+          <button type="submit" class="closeTodoModal">Close</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
