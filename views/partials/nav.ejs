@@ -1,0 +1,32 @@
+<nav class="navbar">
+  <i class="fa-solid fa-bars" onclick="openSideMenu()"></i>
+  <ul class="navbar-nav">
+    <li class="todos-dropdown"><a href="/todos">Todos</a>
+      <ul class="dropdown">
+        <li><a href="#">Personal</a></li>
+        <li><a href="#">School</a></li>
+        <li><a href="#">Work</a></li>
+      </ul>
+    </li>
+    <li><a href="/events">Calendar</a></li>
+    <li><a href="">Profile</a></li>
+    <li><a href="/logout">Logout</a></li>
+  </ul>
+</nav>
+
+<div id="side-menu" class="side-nav"> 
+  <a href="#" class="close-btn" onclick="closeSideMenu()">&times;</a>
+    <button class="fa-plus open-List-Type-Modal"></button>
+    <button class="dropdown-btn">Dropdown 
+      <i onclick="myFunction()" class="fas fa-angle-right"></i>
+    </button>
+  <div class="dropdown-container" >
+    <a href="#">Personal</a>
+    <a href="#">School</a>
+    <a href="#">Work</a>
+  </div>
+  <a href="">Todos</a>
+  <a href="">Calendar</a>
+  <a href="">Profile</a>
+  <a href="">Logout</a>
+</div>
