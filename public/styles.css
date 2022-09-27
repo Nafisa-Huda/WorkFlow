@@ -16,7 +16,7 @@ body {
   width: -webkit-fill-available;
 }
 
-.index-wrapper {
+.index-wrapper, .wrapper {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -24,37 +24,109 @@ body {
   padding: 1rem;
   position: fixed;
   bottom: 0;
-  background-color: #fff;
+  background: #856e9fa6;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  height: 24rem;
+  height: 50%;
   width: 100%;
 }
 
 .slogan-wrapper {
-  color: #000000;
-}
-
-.login-btn {
-  padding-right: 1rem;
-}
-
-.login-btn,
-.signup-btn {
-  text-decoration: none;
-  border-radius: 0.5rem;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  width: 1rem;
   color: #fff;
-  background: #544def;
-  font-weight: 500;
-  cursor: pointer;
 }
 
-.login-btn:hover,
-.signup-btn:hover {
-  color: #b6b3f8;
+.slogan{
+  margin-bottom: 1rem;
 }
+
+.app-blurb{
+  margin: auto;
+  font-weight: 200;
+}
+
+.sign-up-btn-container{
+  margin-top: 1rem;
+}
+
+.sign-up-btn-container > a {
+  margin-left: 1rem;
+}
+
+.btn {
+  text-decoration: none;
+  border-radius: 0.2rem;
+  color: #fff;
+  background: #ff7078;
+  border: none;
+  box-shadow: 0px 0px 16px 2px rgb(255 127 139 / 75%);
+  cursor: pointer;
+  width: auto;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.btn:hover{
+  background: #fa676e;
+  color: #fff;
+}
+
+.main-page-btn-section, .main-page-link{
+  padding: 1rem;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.headings {
+  margin: 0rem 0rem 2rem 0rem;
+  color: #fff;
+}
+
+.headings > h1 {
+  margin: 0rem 0rem 1rem 0rem;
+}
+
+.headings > span {
+  font-weight: 200;
+}
+
+
+.login-form-items input {
+  border-radius: 0.3rem;
+  border: solid 0.9px #7d7d7d;
+  padding: 0.4rem;
+  color: #fff;
+}
+
+.login-form, .signup-form{
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+  margin: 0 auto;
+  gap: 0.7rem;
+}
+
+.login-form > input, .signup-form > input {
+  border-radius: .2rem;
+  border: none;
+  padding: .5rem;
+}
+
+.login-form> label, .signup-form > label{
+  display: flex;
+  color: #fff;
+  font-weight: 200;
+}
+
+
+
+/* .btn{
+  margin-top: 1rem;
+  width: fit-content;
+  cursor: pointer;
+  padding: 0.6rem;
+  font-weight: 600;
+} */
 
 /* navbar and dropdown */
 
@@ -305,11 +377,11 @@ body {
   display: block;
   margin-bottom: 1rem;
   font-size: medium;
-  color: grey;
+  color: black;
 }
 
 .modal-input {
-  background: gray;
+  background: white;
   border: peru;
   color: black;
   font-size: small;
@@ -346,14 +418,14 @@ body {
   border-radius: 2rem;
   border: none;
   padding: 0.7rem;
-  background: linear-gradient(29deg, rgb(112 15 219) 45%, rgb(0 64 228) 92%);
+  background: #ff7078;
+  box-shadow: 0px 0px 16px 2px rgb(255 127 139 / 75%);
   color: #fff;
-  box-shadow: 1px 1px 2rem rgb(0 0 0 / 30%);
   cursor: pointer;
 }
 
 .openModal:hover {
-  opacity: 0.8;
+  background: #fa676e;
 }
 
 .todoListContainer {
@@ -427,6 +499,14 @@ body {
   padding-right: 5rem;
 }
 
+.days{
+  cursor: pointer;
+}
+
+.days > div:hover{
+  background: #6d6dffa6;
+}
+
 @media only screen and (min-width: 768px) {
   /* For desktop: */
   .index-wrapper {
@@ -435,12 +515,23 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 1rem;
-    width: auto;
-  }
+    width: 50%;  
+}
+
+.wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1rem;
+  width: 50%; 
+  justify-content: flex-start; 
+  height: fit-content;
+}
 
   .logo {
     position: fixed;
-    top: 20%;
+    top: 12%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 20rem;

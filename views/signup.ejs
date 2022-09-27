@@ -20,17 +20,21 @@
         <% }) %>    
     <% } %>
     <img src="/images/logo.png" class="logo" alt="logo">
-    <main class="login-wrapper">
-        <div class="login-headings">
+    <main class="wrapper">
+        <div class="headings">
             <h1>Create your account</h1>
-            <h2>Let's sign you up</h2>
+            <span>Let's get you started</span>
         </div>
-        <form action="/signup" method="POST" class="login-form">
+        <form action="/signup" method="POST" class="signup-form">
+            <label for="User name">User Name</label>
             <input type="text" name="userName" placeholder="User Name">
+            <label for="Email">Email</label>
             <input type="email" name="email" placeholder="Email">
+            <label for="Password">Password</label>
             <input type="password" name="password" placeholder="Password">
+            <label for="Confirm Password">Confirm Password</label>
             <input type="password" name="confirmPassword" placeholder="Confirm Password">
-            <input type="submit">
+            <input type="submit" placeholder="Create Account" class="btn">
         </form>
     </main>
 </body>

@@ -1,0 +1,44 @@
+<!-- Modal -->
+<div aria-hidden="true" class="events-modal">
+    <div class="modal">
+      <!-- Modal content -->
+      <div class="modal-content-container">
+        <div class="modal-content">
+          <h3>Add Event</h3>
+          <form action="/events/createEvent" method="POST" class="">
+            <div>
+              <label class="modal-label">Event</label>
+              <input
+                type="text"
+                name="eventTitle"
+                class="modal-input"
+                placeholder="Title"
+                required
+              />
+            </div>
+            <div>
+              <label class="modal-label">Event Description</label>
+              <input
+                type="text"
+                name="eventDescription"
+                class="modal-input"
+                placeholder="Event Description"
+              />
+            </div>
+            <div>
+              <label for="startDate" class="modal-label">Start Date</label>
+              <input type="date" name="startDate" class="modal-input" />
+            </div>
+            <div>
+              <label for="endDate" class="modal-label">End Date</label>
+              <input type="date" name="endDate" class="modal-input" />
+            </div>
+            <button type="submit" class="">Add</button>
+            <button type="submit" class="close-events-modal">Close</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
