@@ -12,11 +12,69 @@ body {
   margin: 0;
 }
 
+.pomodoro-header{
+  background: #6a5496;
+  padding: 1rem;
+}
+
+.pomodoro-heading{
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  font-size: 4rem;
+}
+
+.timer{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.timer-controls{
+  display: flex;
+}
+
+.timer-btn{
+  border-radius: 0.5rem;
+  color: #fff;
+  background: #ff7078;
+  border: none;
+  box-shadow: 0px 0px 16px 2px rgb(255 127 139 / 75%);
+  cursor: pointer;
+  width: max-content;
+  margin: 0.5rem;
+  font-size: larger;
+  font-weight: 400;
+  padding: 0.5rem;
+}
+
+.timer-btn:hover{
+  background: #fa676e;
+}
+
+.display{
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.display-time-left{
+  font-size: 5rem;
+  margin: 0;
+}
+
+.display p {
+  margin: 0;
+}
+
 .logo {
   width: -webkit-fill-available;
 }
 
-.index-wrapper, .wrapper {
+.index-wrapper,
+.wrapper {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -35,16 +93,16 @@ body {
   color: #fff;
 }
 
-.slogan{
+.slogan {
   margin-bottom: 1rem;
 }
 
-.app-blurb{
+.app-blurb {
   margin: auto;
   font-weight: 200;
 }
 
-.sign-up-btn-container{
+.sign-up-btn-container {
   margin-top: 1rem;
 }
 
@@ -65,12 +123,13 @@ body {
   font-weight: 600;
 }
 
-.btn:hover{
+.btn:hover {
   background: #fa676e;
   color: #fff;
 }
 
-.main-page-btn-section, .main-page-link{
+.main-page-btn-section,
+.main-page-link {
   padding: 1rem;
   color: #fff;
   cursor: pointer;
@@ -90,7 +149,6 @@ body {
   font-weight: 200;
 }
 
-
 .login-form-items input {
   border-radius: 0.3rem;
   border: solid 0.9px #7d7d7d;
@@ -98,7 +156,8 @@ body {
   color: #fff;
 }
 
-.login-form, .signup-form{
+.login-form,
+.signup-form {
   display: flex;
   flex-direction: column;
   width: inherit;
@@ -106,27 +165,19 @@ body {
   gap: 0.7rem;
 }
 
-.login-form > input, .signup-form > input {
-  border-radius: .2rem;
+.login-form > input,
+.signup-form > input {
+  border-radius: 0.2rem;
   border: none;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
-.login-form> label, .signup-form > label{
+.login-form > label,
+.signup-form > label {
   display: flex;
   color: #fff;
   font-weight: 200;
 }
-
-
-
-/* .btn{
-  margin-top: 1rem;
-  width: fit-content;
-  cursor: pointer;
-  padding: 0.6rem;
-  font-weight: 600;
-} */
 
 /* navbar and dropdown */
 
@@ -208,6 +259,115 @@ body {
   align-items: center;
 }
 
+/* todo list */
+.todosSectionContainer {
+  position: fixed;
+}
+
+.todosHeadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todosHeading {
+  color: #fff;
+  margin: 1rem;
+  font-size: xx-large;
+}
+
+.openModal {
+  border-radius: 2rem;
+  border: none;
+  padding: 0.7rem;
+  background: #ff7078;
+  box-shadow: 0px 0px 16px 2px rgb(255 127 139 / 75%);
+  color: #fff;
+  cursor: pointer;
+}
+
+.openModal:hover {
+  background: #fa676e;
+}
+
+.todoListContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.todoList {
+  background: #856e9fa6;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: -webkit-fill-available;
+  overflow: auto;
+}
+
+.tag {
+  font-size: small;
+  width: fit-content;
+  color: #d3d3d3ed;
+  margin-top: 0.4rem;
+}
+
+.todoListIcons {
+  display: flex;
+  color: #d3d3d3ed;
+  margin-top: 1rem;
+}
+
+.fa-trash {
+  margin-right: 0.5rem;
+}
+
+.todoItem {
+  border-bottom: solid #b5afaf82 1px;
+  padding-bottom: 0.4rem;
+  padding-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.not {
+  font-size: x-large;
+  font-weight: 700;
+  color: #fff;
+  padding-bottom: 0.5rem;
+}
+
+.evaluation {
+  background: #856e9fa6;
+  color: #fff;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  height: auto;
+  overflow: auto;
+}
+
+.evaluationHeading {
+  margin: initial;
+  color: #fff;
+}
+
+.evaluationItemsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.itemsLeft {
+  padding-right: 5rem;
+}
+
+.days {
+  cursor: pointer;
+}
+
+.days > div:hover {
+  background: #6d6dffa6;
+}
+
 /* calendar */
 
 .cal-aside-container {
@@ -218,7 +378,7 @@ body {
 }
 
 .calendar-container {
-  background: #6d6dff;
+  background: #6a5496;
   border-radius: 0.5rem;
   min-height: 25rem;
   margin: 1rem;
@@ -270,6 +430,8 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   justify-items: center;
+  color: #fff;
+  font-weight: 700;
 }
 .calendar-dates {
   background: #fff;
@@ -338,11 +500,12 @@ body {
   color: #fff;
 }
 
-/* modal */
+/* modals */
 
 .todoModal,
 .detailsModal,
-.list-type-modal {
+.list-type-modal,
+.events-modal {
   display: none;
   position: fixed;
   top: 50%;
@@ -394,119 +557,6 @@ body {
   font-size: small;
 }
 
-/* todo list */
-.todosSectionContainer {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-}
-
-.todosHeadingContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.todosHeading {
-  color: #fff;
-  margin: 1rem;
-  font-size: xx-large;
-}
-
-.openModal {
-  border-radius: 2rem;
-  border: none;
-  padding: 0.7rem;
-  background: #ff7078;
-  box-shadow: 0px 0px 16px 2px rgb(255 127 139 / 75%);
-  color: #fff;
-  cursor: pointer;
-}
-
-.openModal:hover {
-  background: #fa676e;
-}
-
-.todoListContainer {
-  display: flex;
-  justify-content: center;
-}
-
-.todoList {
-  background: #856e9fa6;
-  margin: 1rem;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  width: 21rem;
-  height: auto;
-  overflow: auto;
-}
-
-.tag {
-  font-size: small;
-  width: fit-content;
-  color: #d3d3d3ed;
-  margin-top: 0.4rem;
-}
-
-.todoListIcons {
-  display: flex;
-  color: #d3d3d3ed;
-  margin-top: 1rem;
-}
-
-.fa-trash {
-  margin-right: 0.5rem;
-}
-
-.todoItem {
-  border-bottom: solid #b5afaf82 1px;
-  padding-bottom: 0.4rem;
-  padding-top: 0.4rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.not {
-  font-size: x-large;
-  font-weight: 700;
-  color: #fff;
-  padding-bottom: 0.5rem;
-}
-
-.evaluation {
-  background: #856e9fa6;
-  color: #fff;
-  margin: 1rem;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  height: auto;
-  overflow: auto;
-}
-
-.evaluationHeading {
-  margin: initial;
-  color: #fff;
-}
-
-.evaluationItemsContainer {
-  display: flex;
-  flex-direction: row;
-}
-
-.itemsLeft {
-  padding-right: 5rem;
-}
-
-.days{
-  cursor: pointer;
-}
-
-.days > div:hover{
-  background: #6d6dffa6;
-}
-
 @media only screen and (min-width: 768px) {
   /* For desktop: */
   .index-wrapper {
@@ -515,19 +565,19 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 1rem;
-    width: 50%;  
-}
+    width: 50%;
+  }
 
-.wrapper {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 1rem;
-  width: 50%; 
-  justify-content: flex-start; 
-  height: fit-content;
-}
+  .wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 1rem;
+    width: 50%;
+    justify-content: flex-start;
+    height: fit-content;
+  }
 
   .logo {
     position: fixed;
@@ -537,29 +587,6 @@ body {
     width: 20rem;
   }
 
-  .calendar {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 50rem;
-  }
-
-  .days {
-    height: 34rem;
-  }
-
-  .cal-aside-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .events-aside {
-    width: 25rem;
-    height: 41.1rem;
-  }
-
   .navbar {
     color: #fff;
     overflow: hidden;
@@ -567,7 +594,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    background: #544def8c;
+    background: #6a5496;
   }
 
   .navbar .navbar-nav {
@@ -579,11 +606,8 @@ body {
     color: #fff;
     padding: 1rem;
     text-decoration: none;
+    font-weight: 600;
   }
-
-  /* .navbar a:hover {
-    color: #544def;
-  } */
 
   .navbar-nav li {
     list-style: none;
@@ -610,6 +634,7 @@ body {
 
   .todosSectionContainer {
     margin: 0 auto;
+    width: -webkit-fill-available;
   }
 
   .todosHeadingContainer {
@@ -623,13 +648,30 @@ body {
     justify-content: flex-start;
   }
 
-  .todoList {
-    background: #856e9fa6;
-    margin: 1rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    width: -webkit-fill-available;
+  .todoList{
     height: 30rem;
-    overflow: auto;
+  }
+
+  .calendar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50rem;
+  }
+
+  .days {
+    height: 34rem;
+  }
+
+  .cal-aside-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .events-aside {
+    width: 25rem;
+    height: 41.1rem;
   }
 }
