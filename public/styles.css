@@ -12,63 +12,6 @@ body {
   margin: 0;
 }
 
-.pomodoro-header{
-  background: #6a5496;
-  padding: 1rem;
-}
-
-.pomodoro-heading{
-  display: flex;
-  justify-content: center;
-  color: #fff;
-  font-size: 4rem;
-}
-
-.timer{
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.timer-controls{
-  display: flex;
-}
-
-.timer-btn{
-  border-radius: 0.5rem;
-  color: #fff;
-  background: #ff7078;
-  border: none;
-  box-shadow: 0px 0px 16px 2px rgb(255 127 139 / 75%);
-  cursor: pointer;
-  width: max-content;
-  margin: 0.5rem;
-  font-size: larger;
-  font-weight: 400;
-  padding: 0.5rem;
-}
-
-.timer-btn:hover{
-  background: #fa676e;
-}
-
-.display{
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.display-time-left{
-  font-size: 5rem;
-  margin: 0;
-}
-
-.display p {
-  margin: 0;
-}
-
 .logo {
   width: -webkit-fill-available;
 }
@@ -500,6 +443,90 @@ body {
   color: #fff;
 }
 
+
+/* pomodoro page */
+
+.pomodoro-header{
+  background: #6a5496;
+  color: #fff;
+  padding: 1rem;
+}
+
+.heading-section {
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.pomodoro-heading{
+  font-size: 3rem;
+  margin: 0;
+}
+
+.pomodoro-heading > h1 {
+  font-size: 1.5rem;
+}
+
+.pomodoro-header > section > h2{
+  font-size: larger;
+}
+
+.timer{
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.timer h1{
+  font-size: xx-large;
+}
+
+.timer h2{
+  font-size: larger;
+}
+
+.display{
+  background: #6a5496;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  width: -webkit-fill-available;
+  display: none;
+}
+
+.timer-controls{
+  display: flex;
+}
+
+.timer-btn{
+  border-radius: 0.5rem;
+  color: #fff;
+  background: #ff7078;
+  border: none;
+  box-shadow: 0px 0px 16px 2px rgb(255 127 139 / 75%);
+  cursor: pointer;
+  width: max-content;
+  margin: 0.5rem;
+  font-size: larger;
+  font-weight: 400;
+  padding: 0.5rem;
+}
+
+.timer-btn:hover{
+  background: #fa676e;
+}
+
+.display-time-left{
+  font-size: 5rem;
+  margin: 0;
+}
+
+.display p {
+  margin: 0;
+}
+
 /* modals */
 
 .todoModal,
@@ -559,6 +586,7 @@ body {
 
 @media only screen and (min-width: 768px) {
   /* For desktop: */
+
   .index-wrapper {
     position: fixed;
     top: 50%;
@@ -607,6 +635,10 @@ body {
     padding: 1rem;
     text-decoration: none;
     font-weight: 600;
+  }
+
+  .navbar a:hover{
+    color: #ff7078;
   }
 
   .navbar-nav li {
@@ -673,5 +705,27 @@ body {
   .events-aside {
     width: 25rem;
     height: 41.1rem;
+  }
+
+  .display{
+    width: 23rem;
+  }
+
+  .timer h2{
+    padding: 0rem 12rem 0rem 12rem;
+  }
+
+  .pomodoro-header{
+    display: flex;
+  }
+
+  .pomodoro-header > section{
+    width: 50%;
+  }
+
+
+  .header-img{
+    display: flex;
+    justify-content: space-around;
   }
 }
