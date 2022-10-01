@@ -1,24 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">  
-    <link rel="stylesheet" href="/styles.css">
-    <title>Welcome</title>
-</head>
-<body>
-    <img src="/images/logo.png" class="logo" alt="logo">
-    <main class="index-wrapper">
-        <div class = "slogan-wrapper">
-            <h1 class="slogan">Get more things done with, WorkFlow</h1>
-            <p class="app-blurb">An all-in-one agenda to help streamline the organization of daily tasks, scheduling, deadlines, and goals. Features include multi-purpose calendars, to-do lists, reminders, and a built-in Pomodoro timer to maximize productivity.</p>
-        </div>
-        <section class="sign-up-btn-container">
-            <a href="/login" class="login-btn">Login</a>
-            <a href="/signup" class="signup-btn">Signup</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>WorkFlow</title>
+  </head>
+  <body>
+    <img src="/images/logo.png" class="logo" loading="lazy" alt="logo" />
+    <div>
+      <main class="index-main">
+        <section class="slogan-section">
+          <h1 class="slogan">Get more things done with, WorkFlow</h1>
+          <p class="app-blurb">
+            An all-in-one agenda to help streamline the organization of daily
+            tasks, scheduling, deadlines, and goals. Keeping all of these
+            important tasks in one place can help increase productivity and
+            overall satisfaction.
+          </p>
+          <div>
+            <a href="/login" class="btn">Login</a>
+            <a href="/signup" class="btn">Signup</a>
+          </div>
         </section>
-    </main>
-</body>
+        <section class="image-section">
+          <img
+            src="/images/undrawTasks.svg"
+            class="undraw-tasks-img"
+            loading="lazy"
+            alt=""
+          />
+        </section>
+      </main>
+
+      <section class="index-calendar">
+        <section>
+          <h1 class="slogan">An event calendar</h1>
+          <p class="app-blurb">
+            We all have different responsibilities and commitments that we need
+            to tend to. With Workflows calendar, users can input information
+            about upcoming events to help keep track of their schedule.
+          </p>
+        </section>
+        <section class="image-section">
+          <img src="/images/undrawCalendar.svg" loading="lazy" alt="calendar" />
+        </section>
+      </section>
+
+      <section class="index-todo">
+        <section>
+          <h1 class="slogan">A Multi-list To-do List</h1>
+          <p class="app-blurb">
+            It can be tough trying to manage numerous tasks at once. However,
+            Workflow makes this easier by allowing users to create to-do lists
+            based on different categories of their life (Work, School,
+            Personal), and keep track of their progress.
+          </p>
+        </section>
+        <section class="image-section">
+          <img src="/images/undrawTodo.svg" loading="lazy" alt="todo list" />
+        </section>
+      </section>
+
+      <section class="index-pomodoro">
+        <section>
+          <h1 class="slogan">Pomodoro Timer</h1>
+          <p class="app-blurb">
+            Workflow also includes a Pomodoro timer that will help you focus and
+            accomplish more in a shorter time frame. Using this timer can help
+            you avoid burnout and break your work down into manageable chuncks.
+          </p>
+        </section>
+        <section class="image-section">
+          <img src="/images/undrawClock.svg" loading="lazy" alt="alarm clock" />
+        </section>
+      </section>
+    </div>
+  </body>
 </html>
