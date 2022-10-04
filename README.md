@@ -1,6 +1,5 @@
 # WorkFlow
 An all-in-one agenda to help streamline the organization of daily tasks, scheduling, deadlines, and goals. Keeping all of these important tasks in one place can help increase productivity and overall satisfaction.
-**Link to project:** 
 
   - [How It's Made](#how-its-made)
   - [Dependencies](#dependencies-used)
