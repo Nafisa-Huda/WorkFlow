@@ -7,31 +7,20 @@
       <div class="eventsList">
         <% events.forEach( el => { %>
                 <div class='eventItem' data-id='<%=el.id%>'>
-                    <span class="tag"><%= el.eventTitle %></span>
-                    <span class="tag"><%= el.eventDescription %></span>
-                    <span class="tag">Due on <%= el.startDate %></span>
-                    <span class="tag"><%= el.endDate %></span>
+                  <div>
+                    <span class="title"><%= el.eventTitle %></span>
+                    <span class="description"><%= el.eventDescription %></span>
+                  </div>
+                    <form action="/events/deleteEvent/<%=el._id%>?_method=DELETE" method="POST" class="col-3">
+                      <div class="todoListIcons">
+                          <button class="fa-solid fa-trash del" type="submit"></button>
+                          <i class="fa-solid fa-circle-info openDetailsModal"></i>
+                      </div>
+                  </form>
                 </div>                    
         <% }) %>    
     </div>
-      <button id="openModal" class="open-events-modal">Add Event</button>
-    </section>
-    <section class="calendar-filters">
-      <h3 class="calendar-filter-heading">My Calendars</h3>
-      <div>
-        <div>
-          <input type="checkbox" name="personal" />
-          <label class="filter" for="personal">Personal</label>
-        </div>
-        <div>
-          <input type="checkbox" name="Class" />
-          <label class="filter" for="Class">Class</label>
-        </div>
-        <div>
-          <input type="checkbox" name="Events" />
-          <label class="filter" for="Events">Events</label>
-        </div>
-      </div>
+      <button class="open-events-modal btn">Add Event</button>
     </section>
   </aside>
 </div>

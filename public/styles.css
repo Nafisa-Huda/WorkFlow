@@ -33,6 +33,20 @@ body {
   display: none;
 }
 
+.index-btns > a {
+  text-decoration: none;
+  border-radius: 0.2rem;
+  color: #fff;
+  background: #ff7078;
+  border: none;
+  box-shadow: 0px 0px 16px 2px rgb(255 127 139 / 75%);
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  font-weight: 600;
+  padding: 0.5rem;
+}
+
 .slogan-section,
 .index-calendar,
 .index-todo,
@@ -64,6 +78,12 @@ body {
 
 /* login and sign up pages */
 
+.signup-and-login-logo {
+  width: 17rem;
+  margin: 0 auto;
+  display: flex;
+}
+
 .wrapper {
   display: flex;
   justify-content: center;
@@ -75,8 +95,8 @@ body {
   background: #856e9fa6;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  height: 50%;
   width: 100%;
+  height: 50%;
 }
 
 .sign-up-btn-container {
@@ -97,8 +117,8 @@ body {
   cursor: pointer;
   width: auto;
   margin-top: 1rem;
-  margin-right: 1rem;
   font-weight: 600;
+  padding: 0.5rem;
 }
 
 .btn:hover {
@@ -115,12 +135,12 @@ body {
 }
 
 .headings {
-  margin: 0rem 0rem 2rem 0rem;
+  margin: 0 auto;
   color: #fff;
 }
 
 .headings > h1 {
-  margin: 0rem 0rem 1rem 0rem;
+  margin: 0 auto;
 }
 
 .headings > span {
@@ -147,7 +167,7 @@ body {
 .signup-form > input {
   border-radius: 0.2rem;
   border: none;
-  padding: 0.5rem;
+  padding: 0.3rem;
 }
 
 .login-form > label,
@@ -297,6 +317,15 @@ body {
 
 .fa-trash {
   margin-right: 0.5rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: #d3d3d3ed;
+  cursor: pointer;
+}
+
+.fa-trash:hover {
+  color: #969696ed;
 }
 
 .todoItem {
@@ -342,21 +371,17 @@ body {
   cursor: pointer;
 }
 
-.days > div:hover {
-  background: #6d6dffa6;
-}
-
 /* calendar */
 
 .cal-aside-container {
   display: flex;
-  justify-content: center;
+  margin: 0 auto;
   flex-direction: column;
-  align-items: center;
+  max-width: max-content;
 }
 
 .calendar-container {
-  background: #6a5496;
+  background: #856e9fa6;
   border-radius: 0.5rem;
   min-height: 25rem;
   margin: 1rem;
@@ -417,13 +442,15 @@ body {
   border-bottom-right-radius: 0.5rem;
 }
 .today {
-  background: #6d6dff;
-  justify-content: center;
-  border-radius: 1rem;
+  background: #685696;
+  border-radius: 50%;
   width: 3rem;
   height: 3rem;
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  color: #fff;
 }
 .prev-date,
 .next-date {
@@ -433,6 +460,7 @@ body {
 .events-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .events-aside {
@@ -443,7 +471,7 @@ body {
 }
 
 .events-list-section {
-  background-color: #6d6dff;
+  background-color: #685696;
   margin: 1rem;
   padding: 1.5rem;
   border-radius: 0.5rem;
@@ -461,21 +489,27 @@ body {
   padding-bottom: 1rem;
 }
 
-.calendar-filters {
-  background-color: #544def;
-  margin: 1rem;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  text-overflow: auto;
+.eventItem {
+  border-bottom: solid #b5afaf82 1px;
 }
 
-.calendar-filter-heading {
-  color: #fff;
-  text-decoration: underline;
+.eventItem > div {
+  display: flex;
+  flex-direction: column;
 }
 
-.filter {
+.title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  width: fit-content;
   color: #fff;
+  margin-top: 0.4rem;
+}
+
+.description {
+  color: #d3d3d3ed;
+
+  margin-top: 0.5rem;
 }
 
 /* pomodoro page */
@@ -502,6 +536,7 @@ body {
 
 .pomodoro-header > section > h2 {
   font-size: larger;
+  font-weight: 250;
 }
 
 .timer {
@@ -519,6 +554,7 @@ body {
 
 .timer h2 {
   font-size: larger;
+  font-weight: 200;
 }
 
 .display {
@@ -630,6 +666,14 @@ body {
     font-size: 4.5rem;
   }
 
+  .signup-and-login-logo {
+    max-width: 16rem;
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    border-radius: 1rem;
+  }
+
   .index-calendar {
     display: flex;
     flex-direction: row-reverse;
@@ -671,13 +715,16 @@ body {
 
   .wrapper {
     position: fixed;
-    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 1rem;
     width: 50%;
-    justify-content: flex-start;
-    height: fit-content;
+    height: 50%;
+  }
+
+  .idkk {
+    display: flex;
+    justify-content: center;
   }
 
   .navbar {
