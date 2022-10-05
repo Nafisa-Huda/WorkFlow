@@ -29,6 +29,8 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
 
 ## Optimizations:
 - Google OAuth
+- Forgot Password feature
+- Reset Password feature
 
 
 ## Installation
