@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <section class="todosSectionContainer">
+    <%-include("./partials/nav.ejs")%>
+        <section class="todosSectionContainer">
         <section class="todosHeadingContainer">
             <h1 class="todosHeading">All Todos</h1> 
             <i class="fa-solid fa-plus openModal"></i>
@@ -18,8 +19,7 @@
                 <div class="todoList">
                     <% todos.forEach( el => { %>
                             <div class='todoItem' data-id='<%=el._id%>'>
-                                <span id="todoTitle" class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-                                <span class="tag">Due on <%= el.dueDate %></span>
+                                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span> 
                                 <span class="tag"><%= el.listType %></span>
                                 <span class="tag"><%= el.priority %></span>
                                 <form action="/todos/deleteTodo/<%=el._id%>?_method=DELETE" method="POST" class="col-3">
@@ -30,6 +30,9 @@
                                 </form>
                             </div>                    
                     <% }) %>    
+                    <% if(todos.length == 0) { %>
+                        <h1 class="no-todos-alert">No Todos!</h1>
+                    <% } %>
                 </div>
         </section>
         <section class="evaluation">
@@ -44,9 +47,11 @@
             </div>
         </section>
     </section>
-    <%-include("./partials/nav.ejs")%>
+
+
     <%-include("./partials/todoModal.ejs")%>
     <%-include("./partials/listTypeModal.ejs")%>
+
     <script src="/js/main.js"></script>
 </body>
 </html>

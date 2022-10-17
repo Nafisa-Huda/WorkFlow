@@ -1,0 +1,56 @@
+<!-- Modal -->
+<div aria-hidden="true" class="detailsModal">
+    <div class="modal">
+      <!-- Modal content -->
+      <div class="modal-content-container">
+        <div class="modal-content">
+          <h3>Todo Details</h3>
+          <% todos.forEach( el => { %>
+          <form action="" class="">
+            <div>
+              <label class="modal-label"><%= el.todo %></label>
+              <input
+                type="text"
+                name="todoItem"
+                class="modal-input"
+                placeholder="Title"
+                required
+              />
+            </div>
+            <div>
+              <label class="modal-label"><%= el.todoDescription %></label>
+              <input
+                type="text"
+                name="todoDescription"
+                class="modal-input"
+                placeholder="Todo Description"
+              />
+            </div>
+            <div>
+              <label for="dueDate" class="modal-label"><%= el.dueDate %></label>
+              <input type="date" name="dueDate" class="modal-input" />
+            </div>
+            <div>
+              <label for="Priority" class="modal-label"><%= el.priority %></label>
+              <select name="priority" class="model-select">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+            <div>
+              <label for="List Type" class="modal-label"><%= el.listType %></label>
+              <select name="listType" class="model-select">
+                <option value="Personal">Personal</option>
+                <option value="Work">Work</option>
+                <option value="Chores">Chores</option>
+              </select>
+            </div>
+            <button type="submit" class="closeDetailsModal">Close</button>
+        </form>
+          <% }) %>    
+        </div>
+      </div>
+    </div>
+  </div>
+  

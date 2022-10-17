@@ -3,7 +3,8 @@
     <div class="modal">
       <!-- Modal content -->
       <div class="modal-content-container">
-        <div class="modal-content">
+        <button type="submit" class="close-events-modal fa-solid fa-xmark"></button>
+        <div class="modal-content modal-header">
           <h3>Add Event</h3>
           <form action="/events/createEvent" method="POST" class="">
             <div>
@@ -12,29 +13,45 @@
                 type="text"
                 name="eventTitle"
                 class="modal-input"
-                placeholder="Title"
+                placeholder="Event"
                 required
               />
             </div>
             <div>
               <label class="modal-label">Event Description</label>
-              <input
+              <textarea
                 type="text"
                 name="eventDescription"
+                rows="4"
+                cols="30"
                 class="modal-input"
                 placeholder="Event Description"
+                col
+              ></textarea>
+            </div>
+            <div>
+              <label class="modal-label">Start Time</label>
+              <input
+                type="time"
+                name="startTime"
+                class="modal-input"
+                placeholder="Start Time"
               />
             </div>
             <div>
-              <label for="startDate" class="modal-label">Start Date</label>
-              <input type="date" name="startDate" class="modal-input" />
+              <label class="modal-label">End Time</label>
+              <input
+                type="time"
+                name="endTime"
+                class="modal-input"
+                placeholder="End Time"
+              />
             </div>
             <div>
-              <label for="endDate" class="modal-label">End Date</label>
-              <input type="date" name="endDate" class="modal-input" />
+              <label for="create-date" class="modal-label">Date</label>
+              <input class="modal-input" type="date" name="date" id="create-date" value="<%= calendar ? calendar.toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10) %>" required>
             </div>
-            <button type="submit" class="">Add</button>
-            <button type="submit" class="close-events-modal">Close</button>
+            <button type="submit" class="add-event-btn">Add</button>
           </form>
         </div>
       </div>

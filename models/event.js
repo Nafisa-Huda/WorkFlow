@@ -5,14 +5,14 @@ const EventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // startTime: {
-  //   type: String,
-  //   required: false,
-  // },
-  // endTime: {
-  //   type: String,
-  //   required: false,
-  // },
+  startTime: {
+    type: String,
+    required: false,
+  },
+  endTime: {
+    type: String,
+    required: false,
+  },
   eventDescription: {
     type: String,
     required: true,
@@ -21,9 +21,9 @@ const EventSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
+  date: {
+    type: Date, 
+    default: Date.now
   },
 });
 module.exports = mongoose.model("Event", EventSchema);

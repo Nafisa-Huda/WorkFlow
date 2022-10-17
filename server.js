@@ -11,7 +11,9 @@ const logger = require('morgan')
 const connectDB = require('./config/database')
 const mainRoutes = require("./routes/main");
 const todosRoutes = require('./routes/todos')
-const homePageRoutes = require('./routes/homePage')
+const eventsRoutes = require("./routes/events");
+const pomodoroRoutes = require("./routes/pomodoro");
+
 
 // const event = require("./models/event");
 // const editRoutes = require("./routes/edit");
@@ -56,7 +58,8 @@ app.use(flash());
 //Set Routes
 app.use('/', mainRoutes)
 app.use('/todos', todosRoutes)
-app.use('/homePage', homePageRoutes)
+app.use('/events', eventsRoutes)
+app.use('/pomodoro', pomodoroRoutes)
 
 //Start Server
 app.listen(process.env.PORT, ()=>{

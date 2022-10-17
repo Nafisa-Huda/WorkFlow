@@ -1,25 +1,26 @@
 {
   "dependencies": {
-    "bootstrap": "^5.2.0",
-    "connect-mongo": "^4.6.0",
+    "bcrypt": "^5.0.1",
+    "connect-mongo": "^3.2.0",
+    "date-fns": "^2.29.3",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
+    "express-flash": "^0.0.2",
     "express-session": "^1.17.3",
+    "method-override": "^3.0.0",
     "mongodb": "^4.9.0",
     "mongoose": "^6.5.3",
-    "nodemon": "^2.0.19",
+    "morgan": "^1.10.0",
     "passport": "^0.6.0",
-    "passport-azure-ad": "^4.3.4"
+    "passport-local": "^1.0.0",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
-    "tailwindcss": "^3.1.8"
+    "nodemon": "^2.0.19"
   },
   "scripts": {
-    "start": "node server.js",
-    "build": "tailwindcss -i ./views/input.css -o ./public/styles.css", 
-    "watch": "tailwindcss -i ./views/input.css -o ./public/styles.css --watch"
-
+    "start": "nodemon server.js"
   },
   "name": "workflow",
   "version": "1.0.0",

@@ -19,23 +19,22 @@
             <div class="alert alert-danger"><%= el.msg %></div>
         <% }) %>    
     <% } %>
-    <img src="/images/logo.png" class="logo" alt="logo">
-    <main class="wrapper">
-        <div class="headings">
-            <h1>Create your account</h1>
-            <span>Let's get you started</span>
-        </div>
-        <form action="/signup" method="POST" class="signup-form">
-            <label for="User name">User Name</label>
-            <input type="text" name="userName" placeholder="User Name">
-            <label for="Email">Email</label>
-            <input type="email" name="email" placeholder="Email">
-            <label for="Password">Password</label>
-            <input type="password" name="password" placeholder="Password">
-            <label for="Confirm Password">Confirm Password</label>
-            <input type="password" name="confirmPassword" placeholder="Confirm Password">
-            <input type="submit" placeholder="Create Account" class="btn">
-        </form>
-    </main>
+        <img src="/imgs/logo.png" class="signup-and-login-logo" alt="logo">
+        <main class="wrapper">
+            <form action="/signup" method="POST" class="signup-form">
+                <div class="headings">
+                    <h1>Sign Up</h1>
+                </div>
+                <label for="User name">User Name</label>
+                <input type="text" name="userName" placeholder="User Name">
+                <label for="Email">Email</label>
+                <input type="email" name="email" placeholder="Email">
+                <label for="Password">Password</label>
+                <input type="password" name="password" placeholder="Password">
+                <label for="Confirm Password">Confirm Password</label>
+                <input type="password" name="confirmPassword" placeholder="Confirm Password">
+                <input type="submit" placeholder="Create Account" class="btn">
+            </form>
+        </main>
 </body>
 </html>

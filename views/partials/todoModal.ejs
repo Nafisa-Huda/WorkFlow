@@ -3,7 +3,8 @@
   <div class="modal">
     <!-- Modal content -->
     <div class="modal-content-container">
-      <div class="modal-content">
+      <button type="submit" class="closeTodoModal fa-solid fa-xmark"></button>
+      <div class="modal-content modal-header">
         <h3>Add A Todo Item</h3>
         <form action="/todos/createTodo" method="POST" class="">
           <div>
@@ -18,35 +19,33 @@
           </div>
           <div>
             <label class="modal-label">Todo Description</label>
-            <input
-              type="text"
-              name="todoDescription"
-              class="modal-input"
-              placeholder="Todo Description"
-            />
-          </div>
-          <div>
-            <label for="dueDate" class="modal-label">Due Date</label>
-            <input type="date" name="dueDate" class="modal-input" />
+            <textarea
+            type="text"
+            name="todoDescription"
+            rows="4"
+            cols="30"
+            class="modal-input"
+            placeholder="Todo Description"
+            col
+          ></textarea>
           </div>
           <div>
             <label for="Priority" class="modal-label">Priority</label>
-            <select name="priority" class="model-select">
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
+            <select name="priority" class="modal-input">
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
             </select>
           </div>
           <div>
             <label for="List Type" class="modal-label">List Type</label>
-            <select name="listType" class="model-select">
+            <select name="listType" class="modal-input">
               <option value="Personal">Personal</option>
               <option value="Work">Work</option>
               <option value="Chores">Chores</option>
             </select>
           </div>
-          <button type="submit" class="">Add</button>
-          <button type="submit" class="closeTodoModal">Close</button>
+          <button type="submit" class="add-todo-btn">Add</button>
         </form>
       </div>
     </div>

@@ -9,18 +9,14 @@ const TodoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  dueDate: {
-    type: String,    
-    required: true,
-  },
   priority:{
     type: String,
     required: true,
   },
-  listType:{
-    type: String,
-    required: true,
-  },
+  // listType:{
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   required: true,
+  // },
   completed: {
     type: Boolean,
     required: true,
@@ -32,3 +28,5 @@ const TodoSchema = new mongoose.Schema({
 })
 
 module.exports = mongoose.model('Todo', TodoSchema)
+
+

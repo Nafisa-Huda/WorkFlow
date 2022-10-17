@@ -1,22 +1,36 @@
 <div class="events-container">
   <aside class="events-aside">
     <section class="events-list-section">
-      <div class="date">
-        <p class="font-bold"></p>
-      </div>
+       <div class="date"></div> 
+       <section>
+          <form action="/events/previous/" method="post" class="previous">
+            <input type="hidden" name="date" value="<%= calendar ? calendar.toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10) %>">
+            <button type="submit" class="prev-btn"><i class="fa-solid fa-angle-left"></i></button>  
+          </form>
+          <h2 class="date-heading"><%= calendar.toLocaleDateString('en', { year: 'numeric' , month: 'long' , day: '2-digit' }) %></h2>
+          <form action="/events/next/" method="post" role="button" class="next">
+            <input type="hidden" name="date" value="<%= calendar ? calendar.toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10) %>">
+            <button type="submit" class="next-btn"><i class="fa-solid fa-angle-right"></i></button>  
+          </form>
+       </section>
       <div class="eventsList">
         <% events.forEach( el => { %>
                 <div class='eventItem' data-id='<%=el.id%>'>
                   <div>
+                    <section class="times">
+                      <span class="start-time"><%= el.startTime %></span>
+                      <span>-</span>
+                      <span class="end-time"><%= el.endTime %></span>
+                    </section>
                     <span class="title"><%= el.eventTitle %></span>
                     <span class="description"><%= el.eventDescription %></span>
-                  </div>
-                    <form action="/events/deleteEvent/<%=el._id%>?_method=DELETE" method="POST" class="col-3">
+                    <form action="/events/deleteEvent/<%=el._id%>?_method=DELETE" method="POST" class="delete-form">
                       <div class="todoListIcons">
                           <button class="fa-solid fa-trash del" type="submit"></button>
                           <i class="fa-solid fa-circle-info openDetailsModal"></i>
                       </div>
                   </form>
+                  </div>
                 </div>                    
         <% }) %>    
     </div>

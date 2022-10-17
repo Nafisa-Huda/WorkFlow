@@ -150,7 +150,7 @@ const renderCalendar = () => {
 
   document.querySelector(".date h1").innerHTML = months[date.getMonth()]; //Uses month array and getMonth method to display current Month
 
-  document.querySelector(".date p").innerHTML = new Date().toDateString(); //Displays current date in a readable format
+  // document.querySelector(".date p").innerHTML = new Date().toDateString(); //Displays current date in a readable format
 
   // document.querySelector('.days').addEventListener('click', () => {
 
@@ -193,3 +193,9 @@ document.querySelector(".next").addEventListener("click", () => {
 });
 
 renderCalendar(); //function to render the calendar
+
+// const listTypeBtn = document.querySelector(".listTypeBtn")
+
+// listTypeBtn.addEventListener("click", () => {
+  
+// })

@@ -24,19 +24,19 @@
             <div class="alert alert-danger"><%= el.msg %></div>
         <% }) %>    
     <% } %>
-    <img src="/images/logo.png" class="logo" alt="logo">
-    <main class="wrapper">
-        <div class="headings">
-            <h1>Welcome back</h1>
-            <span>Please Enter Your Details</span>
-        </div>
-        <form action="/login" method="POST" class="login-form">
-                <label for="Email">Email</label>
-                <input type="email" name="email" placeholder="Email"> 
-                <label for="Password">Password</label>
-                <input type="password" name="password" placeholder="Password" autocomplete="off">
-                <input type="submit" value="Login" class="btn">
-        </form>
-    </main>
+    <img src="/imgs/logo.png" class="signup-and-login-logo" alt="logo">
+        <main class="wrapper">
+            <div class="headings">
+                <h1>Welcome back</h1>
+                <span>Please Enter Your Details</span>
+            </div>
+            <form action="/login" method="POST" class="login-form">
+                    <label for="Email">Email</label>
+                    <input type="email" name="email" placeholder="Email"> 
+                    <label for="Password">Password</label>
+                    <input type="password" name="password" placeholder="Password" autocomplete="off">
+                    <input type="submit" value="Login" class="btn">
+            </form>
+        </main>
 </body>
 </html>

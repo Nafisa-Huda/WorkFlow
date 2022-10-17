@@ -14,7 +14,7 @@
     <title>WorkFlow</title>
   </head>
   <body>
-    <img src="/images/logo.png" class="logo" loading="lazy" alt="logo" />
+    <img src="/imgs/logo.png" class="logo" loading="lazy" alt="logo" />
     <div>
       <main class="index-main">
         <section class="slogan-section">
@@ -25,14 +25,14 @@
             important tasks in one place can help increase productivity and
             overall satisfaction.
           </p>
-          <div>
-            <a href="/login" class="btn">Login</a>
-            <a href="/signup" class="btn">Signup</a>
+          <div class="index-btns">
+            <a href="/login">Login</a>
+            <a href="/signup">Signup</a>
           </div>
         </section>
         <section class="image-section">
           <img
-            src="/images/undrawTasks.svg"
+            src="/imgs/undrawTasks.svg"
             class="undraw-tasks-img"
             loading="lazy"
             alt=""
@@ -50,7 +50,7 @@
           </p>
         </section>
         <section class="image-section">
-          <img src="/images/undrawCalendar.svg" loading="lazy" alt="calendar" />
+          <img src="/imgs/undrawCalendar.svg" loading="lazy" alt="calendar" />
         </section>
       </section>
 
@@ -65,7 +65,7 @@
           </p>
         </section>
         <section class="image-section">
-          <img src="/images/undrawTodo.svg" loading="lazy" alt="todo list" />
+          <img src="/imgs/undrawTodo.svg" loading="lazy" alt="todo list" />
         </section>
       </section>
 
@@ -79,9 +79,10 @@
           </p>
         </section>
         <section class="image-section">
-          <img src="/images/undrawClock.svg" loading="lazy" alt="alarm clock" />
+          <img src="/imgs/undrawClock.svg" loading="lazy" alt="alarm clock" />
         </section>
       </section>
     </div>
+    <%-include("./partials/footer.ejs")%>
   </body>
 </html>
