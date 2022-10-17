@@ -1,4 +1,4 @@
-const Event = require("../models/Event");
+const Event = require("../models/event");
 const startOfDay = require("date-fns/startOfDay");
 const endOfDay = require("date-fns/endOfDay");
 const subDays = require("date-fns/subDays");
