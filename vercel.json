@@ -1,6 +1,6 @@
 {
     "version": 2,
-    "name": "workflow",
+    "name": "work-flow",
     "builds": [
        { "src": "server.js", "use": "@vercel/node" }
     ],
