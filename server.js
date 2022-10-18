@@ -28,7 +28,7 @@ require("./config/passport")(passport);
 connectDB()
 
 //Set All Middleware
-app.set('views', 'WORKFLOW' + '/views')
+app.set('views', + '/views')
 app.set("view engine", "ejs");
 app.use(express.static('public'))
 //Body Parsing
