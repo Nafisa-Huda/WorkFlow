@@ -20,8 +20,7 @@
     "nodemon": "^2.0.19"
   },
   "scripts": {
-    "start": "nodemon server.js",
-    "build": "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "name": "workflow",
   "version": "1.0.0",
