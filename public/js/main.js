@@ -1,47 +1,10 @@
-// motivational quotes
-// window.addEventListener('load', getFetch) //when the window loads the getFetch function is called which makes an HTTP request to the API server
-// function getFetch(){
-//   const url = 'https://free-quotes-api.herokuapp.com/' //quotes api url
-//   fetch(url)
-//       .then(res => res.json()) // parse response as JSON
-//       .then(data => {
-//         console.log(data)
-//         document.querySelector('.quote').innerText = data.quote //displays the quote on the page
-//       })
-//       .catch(err => {
-//           console.log(`error ${err}`)
-//       });
-// }
-
 //side menu
-
 function openSideMenu() {
   document.getElementById("side-menu").style.width = "250px";
 }
 
 function closeSideMenu() {
   document.getElementById("side-menu").style.width = "0";
-}
-
-//dropdown in sidemenu
-
-let dropdown = document.querySelectorAll(".dropdown-btn");
-
-for (let i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", () => {
-    this.classList.toggle("active");
-    let dropdownItems = this.nextElementSibling;
-    if (dropdownItems.style.display === "block") {
-      dropdownItems.style.display = "none";
-    } else {
-      dropdownItems.style.display = "block";
-    }
-  });
-}
-
-function subMenu() {
-  let element = document.querySelector(".fa-angle-right");
-  element.classList.toggle("rotate");
 }
 
 //Modal Popups
@@ -91,15 +54,121 @@ if(closeEventsModal){
   }); //when you click the close button, the modal closes
 }
 
+if(openDetailsModal){
+  openDetailsModal.addEventListener("click", () => {
+    detailsModal.style.display = "block";
+    //getting all form inputs
+    todoItem = document.querySelector(".todo"),
+    todoDescription = document.querySelector(".todo-description")
+    dueDate = document.querySelector(".due-date")
+    priority = document.querySelector(".priority")
+    listType = document.querySelector(".list-type")
+    updateBtn = document.querySelector(".update")
 
-// openListTypeModal.addEventListener("click", () => {
-//     listTypeModal.style.display = "block"
+    //updating all form inputs
+    todoItem.setAttribute("placeholder", this.dataset.todo)
+    todoDescription.setAttribute("placeholder", this.dataset.todoDescription)
+    dueDate.setAttribute("value", this.dataset.dueDate)
+    priority.setAttribute("value", this.dataset.priority)
+    listType.setAttribute("value", this.dataset.listType)
+    updateBtn.setAttribute("data-id", this.dataset.id)
+    updateBtn.addEventListener('click', update)
+  });
+}
 
-// });
+if(closeDetailsModal){
+  closeDetailsModal.addEventListener("click", () => {
+    detailsModal.style.display = "none";
+  }); //when you click the close button, the modal closes
+}
 
-// closeListTypeModal.addEventListener("click", () => {
-//     listTypeModal.style.display = "none"
-// }); //when you click the close button, the modal closes
+async function edit(){
+  const todoId = this.dataset.id,
+  todo = document.querySelector(".todo"),
+  todoDescription = document.querySelector(".todo-description").value,
+  dueDate = document.querySelector(".due-date").value,
+  priority = document.querySelector(".priority").value,
+  listType = document.querySelector(".list-type").value
+
+  let todoItem = todo.value || todo.getAttribute('placeholder');
+  console.log(todo,todoId)
+  try{
+      const response = await fetch('todos/edit', {
+          method: 'put',
+          headers: {'Content-type': 'application/json'},
+          body: JSON.stringify({
+              'todoIdFromJSFile': todoId,
+              'todoFromJS' : todo,
+              'todoDescriptionFromJS' : todoDescription,
+              'dueDateFromJS' : dueDate,
+              'priorityFromJS' : priority,
+              'listTypeFromJS' : listType
+
+          })
+      })
+      const data = await response.json()
+      console.log(data)
+      location.reload()
+  }catch(err){
+      console.log(err)
+  }
+}
+
+// pomodoro clock
+
+let countdown;
+const timerDisplay = document.querySelector('.display-time-left')
+const endTime = document.querySelector('.display-end-time')
+const buttons = document.querySelectorAll('[data-time]')
+const display = document.querySelector('.display')
+
+const timer = (seconds) => {
+  //clear existing timers
+  clearInterval(countdown)
+  const now =  Date.now()
+  const then = now + seconds * 1000
+  displayRemainingTime(seconds)
+  displayEndTime(then)
+
+  countdown = setInterval(() => {
+    const secondsLeft = Math.round((then - Date.now()) / 1000)
+    //stops interval from running
+    if(secondsLeft < 0){
+      clearInterval(countdown)
+      return
+    }
+    //display it
+    displayRemainingTime(secondsLeft)
+  }, 1000)
+}
+
+const displayRemainingTime = (seconds) => {
+  const minutes = Math.floor(seconds / 60);
+  const remainderSeconds = seconds % 60
+  const display = `${minutes}:${remainderSeconds < 10 ? '0' :  ''}${remainderSeconds}`
+  document.title = display;
+  timerDisplay.textContent = display;
+}
+
+const displayEndTime = (timestamp) => {
+  const end = new Date(timestamp)
+  const hour = end.getHours()
+  const adjustedHour = hour > 12 ? hour - 12 : hour
+  const minutes = end.getMinutes()
+  endTime.textContent = `Will Stop At, ${adjustedHour}:${minutes < 10 ? '0' : ''}${minutes}`
+}
+
+// const buttonSound = new Audio('/btn.mp3');
+
+
+function startTimer() {
+  const seconds = parseInt(this.dataset.time)
+  // buttonSound.play();
+  timer(seconds)
+  display.style.display = 'block'
+}
+
+buttons.forEach(button => button.addEventListener('click', startTimer))
 
 
 
@@ -150,12 +219,6 @@ const renderCalendar = () => {
 
   document.querySelector(".date h1").innerHTML = months[date.getMonth()]; //Uses month array and getMonth method to display current Month
 
-  // document.querySelector(".date p").innerHTML = new Date().toDateString(); //Displays current date in a readable format
-
-  // document.querySelector('.days').addEventListener('click', () => {
-
-  // })
-
   let days = "";
 
   for (let x = firstDayOfMonthIndex; x > 0; x--) {
@@ -180,22 +243,23 @@ const renderCalendar = () => {
   monthDays.innerHTML = days; //displays days for the next month
 };
 
-document.querySelector(".prev").addEventListener("click", () => {
-  //click event listener to render the PREVIOUS month
-  date.setMonth(date.getMonth() - 1); //set the month as the current month minus one -> previous month
-  renderCalendar(); //call the global render calendar function
-});
+const prevMonth = document.querySelector(".prev")
+const nextMonth = document.querySelector(".next")
+if(prevMonth){
+  prevMonth.addEventListener("click", () => {
+    //click event listener to render the PREVIOUS month
+    date.setMonth(date.getMonth() - 1); //set the month as the current month minus one -> previous month
+    renderCalendar(); //call the global render calendar function
+  });
+}
 
-document.querySelector(".next").addEventListener("click", () => {
-  //click event listener to render the NEXT month
-  date.setMonth(date.getMonth() + 1); //set the month as the current month plus one -> next month
-  renderCalendar(); //call the global render calendar function
-});
+if(nextMonth){
+  nextMonth.addEventListener("click", () => {
+    //click event listener to render the NEXT month
+    date.setMonth(date.getMonth() + 1); //set the month as the current month plus one -> next month
+    renderCalendar(); //call the global render calendar function
+  });
+}
+
 
 renderCalendar(); //function to render the calendar
-
-// const listTypeBtn = document.querySelector(".listTypeBtn")
-
-// listTypeBtn.addEventListener("click", () => {
-  
-// })

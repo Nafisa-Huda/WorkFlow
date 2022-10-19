@@ -5,13 +5,15 @@ const { ensureAuth } = require('../middleware/auth')
 
 router.get('/', ensureAuth, todosController.getTodos)
 
-router.get("/getListType/:id", ensureAuth, todosController.getListType)
+// router.get("/getListType/:id", ensureAuth, todosController.getListType)
 
 router.post('/createTodo', todosController.createTodo)
 
-router.put('/markComplete/:id', todosController.markComplete)
+// router.put('/markComplete/:id', todosController.markComplete)
 
-router.put('/markIncomplete/:id', todosController.markIncomplete)
+// router.put('/markIncomplete/:id', todosController.markIncomplete)
+
+router.put('/edit', todosController.edit)
 
 router.delete('/deleteTodo/:id', todosController.deleteTodo)
 

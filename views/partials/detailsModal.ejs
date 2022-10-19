@@ -1,56 +1,54 @@
 <!-- Modal -->
-<div aria-hidden="true" class="detailsModal">
+  <div aria-hidden="true" class="detailsModal">
     <div class="modal">
       <!-- Modal content -->
       <div class="modal-content-container">
         <div class="modal-content">
           <h3>Todo Details</h3>
-          <% todos.forEach( el => { %>
-          <form action="" class="">
+          <form action="/todos/edit" class="">
             <div>
-              <label class="modal-label"><%= el.todo %></label>
+              <label class="modal-label todo"></label>
               <input
                 type="text"
                 name="todoItem"
                 class="modal-input"
-                placeholder="Title"
+                placeholder=""
                 required
               />
             </div>
             <div>
-              <label class="modal-label"><%= el.todoDescription %></label>
+              <label class="modal-label todo-description"></label>
               <input
                 type="text"
                 name="todoDescription"
                 class="modal-input"
-                placeholder="Todo Description"
+                placeholder=""
               />
             </div>
             <div>
-              <label for="dueDate" class="modal-label"><%= el.dueDate %></label>
+              <label for="dueDate" class="modal-label due-date"></label>
               <input type="date" name="dueDate" class="modal-input" />
             </div>
             <div>
-              <label for="Priority" class="modal-label"><%= el.priority %></label>
+              <label for="Priority" class="modal-label priority"></label>
               <select name="priority" class="model-select">
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
               </select>
             </div>
             <div>
-              <label for="List Type" class="modal-label"><%= el.listType %></label>
+              <label for="List Type" class="modal-label list-type"></label>
               <select name="listType" class="model-select">
-                <option value="Personal">Personal</option>
-                <option value="Work">Work</option>
-                <option value="Chores">Chores</option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
               </select>
             </div>
             <button type="submit" class="closeDetailsModal">Close</button>
+            <button type="submit" class="update">Update</button>
         </form>
-          <% }) %>    
         </div>
       </div>
     </div>
   </div>
-  

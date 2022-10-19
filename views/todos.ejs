@@ -1,15 +1,8 @@
+<%-include("./partials/header.ejs")%>
+<%-include("./partials/nav.ejs")%>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/211eaa680e.js" crossorigin="anonymous"></script>
-    <title>Todos</title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
 <body>
-    <%-include("./partials/nav.ejs")%>
         <section class="todosSectionContainer">
         <section class="todosHeadingContainer">
             <h1 class="todosHeading">All Todos</h1> 
@@ -20,12 +13,12 @@
                     <% todos.forEach( el => { %>
                             <div class='todoItem' data-id='<%=el._id%>'>
                                 <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span> 
+                                <span class="tag"><%= el.todoDescription %></span>
                                 <span class="tag"><%= el.listType %></span>
                                 <span class="tag"><%= el.priority %></span>
                                 <form action="/todos/deleteTodo/<%=el._id%>?_method=DELETE" method="POST" class="col-3">
                                     <div class="todoListIcons">
                                         <button class="fa-solid fa-trash del" type="submit"></button>
-                                        <i class="fa-solid fa-circle-info openDetailsModal"></i>
                                     </div>
                                 </form>
                             </div>                    
@@ -48,10 +41,8 @@
         </section>
     </section>
 
-
     <%-include("./partials/todoModal.ejs")%>
-    <%-include("./partials/listTypeModal.ejs")%>
-
+    <%-include("./partials/detailsModal.ejs")%>
     <script src="/js/main.js"></script>
 </body>
 </html>
