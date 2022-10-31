@@ -7,42 +7,42 @@
           <h3>Todo Details</h3>
           <form action="/todos/edit" class="">
             <div>
-              <label class="modal-label todo"></label>
+              <label class="modal-label"></label>
               <input
                 type="text"
                 name="todoItem"
-                class="modal-input"
+                class="modal-input todo"
                 placeholder=""
                 required
               />
             </div>
             <div>
-              <label class="modal-label todo-description"></label>
+              <label class="modal-label"></label>
               <input
                 type="text"
                 name="todoDescription"
-                class="modal-input"
+                class="modal-input todo-description"
                 placeholder=""
               />
             </div>
             <div>
-              <label for="dueDate" class="modal-label due-date"></label>
-              <input type="date" name="dueDate" class="modal-input" />
+              <label for="dueDate" class="modal-label"></label>
+              <input type="date" name="dueDate" class="modal-input due-date" />
             </div>
             <div>
-              <label for="Priority" class="modal-label priority"></label>
+              <label for="Priority" class="modal-label"></label>
               <select name="priority" class="model-select">
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
+                <option class="priority" value=""></option>
+                <option class="priority" value=""></option>
+                <option class="priority" value=""></option>
               </select>
             </div>
             <div>
-              <label for="List Type" class="modal-label list-type"></label>
+              <label for="List Type" class="modal-label"></label>
               <select name="listType" class="model-select">
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
+                <option class="list-type" value=""></option>
+                <option class="list-type" value=""></option>
+                <option class="list-type" value=""></option>
               </select>
             </div>
             <button type="submit" class="closeDetailsModal">Close</button>

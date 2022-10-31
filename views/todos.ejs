@@ -18,10 +18,12 @@
                                 <span class="tag"><%= el.priority %></span>
                                 <form action="/todos/deleteTodo/<%=el._id%>?_method=DELETE" method="POST" class="col-3">
                                     <div class="todoListIcons">
-                                        <button class="fa-solid fa-trash del" type="submit"></button>
+                                        <button class="fa-solid fa-trash del" aria-label="delete" type="submit"></button>
+                                        <i class="fa-regular fa-pen-to-square openDetailsModal" data-id="<%=el._id%>" data-todo="<%= el.todo %>"  data-todoDescription="<%= el.todoDescription%>" data-listType="<%= el.listType%>" data-priority="<%= el.priority%>"></i>
                                     </div>
                                 </form>
-                            </div>                    
+                            </div>     
+               
                     <% }) %>    
                     <% if(todos.length == 0) { %>
                         <h1 class="no-todos-alert">No Todos!</h1>
@@ -40,7 +42,6 @@
             </div>
         </section>
     </section>
-
     <%-include("./partials/todoModal.ejs")%>
     <%-include("./partials/detailsModal.ejs")%>
     <script src="/js/main.js"></script>

@@ -565,6 +565,7 @@ footer{
   box-shadow: 0px 0px 16px 2px rgb(255 127 139 / 75%);
   color: #fff;
   cursor: pointer;
+  margin-right: -0.5rem;
 }
 
 .prev-btn:hover, .next-btn:hover{
@@ -591,11 +592,12 @@ footer{
 
 .events-list-section {
   background-color: #685696;
-  margin: 1rem;
   padding: 1.5rem;
-  border-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
   overflow: auto;
 }
+
 
 .events {
   background: #544def;
@@ -932,9 +934,27 @@ footer{
     align-items: center;
   }
 
+  .prev-btn, .next-btn{
+    border-radius: 50%;
+    border: none;
+    padding: 0.8rem;
+    background: #ff7078;
+    box-shadow: 0px 0px 16px 2px rgb(255 127 139 / 75%);
+    color: #fff;
+    cursor: pointer;
+  }
+
   .events-aside {
     width: 25rem;
     height: 41.1rem;
+  }
+
+  .events-list-section {
+    background-color: #685696;
+    margin: 1rem;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    overflow: auto;
   }
 
   .display {

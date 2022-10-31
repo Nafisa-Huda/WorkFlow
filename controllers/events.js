@@ -31,7 +31,7 @@ module.exports = {
     if (!req.body.date) {
       req.body.date = req.params.date; //ensures correct date is gotten when making request
     }
-    const date = new Date(req.body.date.replaceAll("-", "/"));
+    const date = new Date(req.body.date.replace(/-/g, "/"));
     const findDate = {
       $gte: startOfDay(date),
       $lte: endOfDay(date),
@@ -52,7 +52,7 @@ module.exports = {
     }
   },
   getPreviousDay: async (req, res) => {
-    const date = new Date(req.body.date.replaceAll("-", "/"));
+    const date = new Date(req.body.date.replace(/-/g, "/"));
     const previousDay = subDays(date, 1).toISOString().slice(0, 10); //subtract 1 day from curr date, converts date to YYYY-MM-DD format
     try {
       res.redirect(`/events/${previousDay}`);
@@ -61,7 +61,7 @@ module.exports = {
     }
   },
   getNextDay: async (req, res) => {
-    const date = new Date(req.body.date.replaceAll("-", "/"));
+    const date = new Date(req.body.date.replace(/-/g, "/"));
     const nextDay = addDays(date, 1).toISOString().slice(0, 10); //add 1 day from curr date, converts date to YYYY-MM-DD format
     try {
       res.redirect(`/events/${nextDay}`);
@@ -70,7 +70,7 @@ module.exports = {
     }
   },
   createEvent: async (req, res) => {
-    let creationDate = req.body.date.replaceAll("-", "/");
+    let creationDate = req.body.date.replace(/-/g, "/");
     const getDate = new Date(creationDate).toISOString().slice(0, 10);
     try {
       await Event.create({
