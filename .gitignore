@@ -1,3 +1,8 @@
 node_modules
+dist
+coverage
 .env
-./public/imgs
+.env.*
+!.env.example
+.DS_Store
+*.log
