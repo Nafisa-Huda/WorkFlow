@@ -52,7 +52,9 @@ describe('auth', () => {
     await agent.get('/api/auth/me').expect(200)
 
     await agent.post('/api/auth/logout').expect(204)
-    await agent.get('/api/auth/me').expect(401)
+    const after = await agent.get('/api/auth/me').expect(200)
+    expect(after.body.user).toBeNull()
+    await agent.get('/api/tasks').expect(401)
   })
 
   it('gives the same error for an unknown email and a wrong password', async () => {

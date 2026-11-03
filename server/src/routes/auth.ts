@@ -4,7 +4,6 @@ import { z } from 'zod'
 import passport from '../config/passport.js'
 import { isTest } from '../config/env.js'
 import { HttpError } from '../lib/errors.js'
-import { requireAuth } from '../middleware/auth.js'
 import { createDefaultLists } from '../models/List.js'
 import { User } from '../models/User.js'
 
@@ -85,8 +84,10 @@ router.post('/logout', (req, res, next) => {
   })
 })
 
-router.get('/me', requireAuth, (req, res) => {
-  res.json({ user: req.user })
+// "Who am I?" is a valid question when signed out, so answer with null rather than a 401.
+// Protected resources still return 401.
+router.get('/me', (req, res) => {
+  res.json({ user: req.user ?? null })
 })
 
 export default router
