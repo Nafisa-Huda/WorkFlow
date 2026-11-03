@@ -1,7 +1,10 @@
 import { format, parseISO } from 'date-fns'
 import { Navigate, useParams } from 'react-router'
+import { AgendaPanel } from '@/features/agenda/AgendaPanel'
+import { ScheduleDndContext } from '@/features/agenda/dnd'
+import { useEvents } from '@/features/events/api'
 import { useLists } from '@/features/lists/api'
-import { formatDayHeading, todayKey, tomorrowKey } from '@/lib/dates'
+import { dayRange, formatDayHeading, isInRange, todayKey, tomorrowKey } from '@/lib/dates'
 import type { Task } from '@/lib/types'
 import { useTasks } from './api'
 import { TaskView, type TaskSection } from './TaskView'
@@ -11,37 +14,75 @@ const isDone = (t: Task) => !!t.completedAt
 
 export function TodayPage() {
   const today = todayKey()
-  const query = useTasks({ dueTo: today })
-  const tasks = query.data ?? []
+  const range = dayRange(new Date())
+  const due = useTasks({ dueTo: today })
+  const scheduled = useTasks({
+    scheduledFrom: range.from.toISOString(),
+    scheduledTo: range.to.toISOString(),
+  })
+  const events = useEvents(range)
 
-  // Completed tasks stay visible today if they were due today or finished today,
+  // Today = due today (or overdue) + anything scheduled today, whatever its due date.
+  const tasks = [
+    ...new Map([...(due.data ?? []), ...(scheduled.data ?? [])].map((t) => [t.id, t])).values(),
+  ]
+  const isScheduledToday = (t: Task) => !!t.scheduledStart && isInRange(t.scheduledStart, range)
+  const byScheduleTime = (a: Task, b: Task) =>
+    (a.scheduledStart ?? '\uffff').localeCompare(b.scheduledStart ?? '\uffff')
+
+  // Completed tasks stay visible today if they were due/scheduled today or finished today,
   // so checking something off feels rewarding instead of making it vanish.
   const completed = tasks.filter(
-    (t) => isDone(t) && (t.dueDate === today || isLocalToday(t.completedAt!)),
+    (t) =>
+      isDone(t) && (t.dueDate === today || isScheduledToday(t) || isLocalToday(t.completedAt!)),
+  )
+  const overdue = tasks.filter(
+    (t) => isOpen(t) && !!t.dueDate && t.dueDate < today && !isScheduledToday(t),
   )
 
   return (
-    <TaskView
-      title="Today"
-      subtitle={format(new Date(), 'EEEE, MMMM d')}
-      query={query}
-      sections={[
-        {
-          id: 'overdue',
-          title: 'Overdue',
-          tone: 'danger',
-          tasks: tasks.filter((t) => isOpen(t) && t.dueDate! < today),
-        },
-        {
-          id: 'today',
-          tasks: tasks.filter((t) => isOpen(t) && t.dueDate === today),
-          hideDue: true,
-        },
-      ]}
-      completed={completed}
-      composerDefaults={{ dueDate: today }}
-      empty="Nothing due today. Add a task above, or plan ahead in Upcoming."
-    />
+    <ScheduleDndContext>
+      <TaskView
+        title="Today"
+        subtitle={format(new Date(), 'EEEE, MMMM d')}
+        query={{
+          isPending: due.isPending || scheduled.isPending,
+          isError: due.isError || scheduled.isError,
+          refetch: () => Promise.all([due.refetch(), scheduled.refetch()]),
+        }}
+        sections={[
+          {
+            id: 'overdue',
+            title: 'Overdue',
+            tone: 'danger',
+            tasks: overdue,
+          },
+          {
+            id: 'today',
+            // Only needs a heading to tell it apart from Overdue.
+            title: overdue.length ? 'Today' : undefined,
+            tasks: tasks
+              .filter((t) => isOpen(t) && (t.dueDate === today || isScheduledToday(t)))
+              .sort(byScheduleTime),
+            hideDue: true,
+          },
+        ]}
+        completed={completed}
+        composerDefaults={{ dueDate: today }}
+        draggable
+        aside={
+          <AgendaPanel
+            title="Schedule"
+            date={range.from}
+            events={events.data ?? []}
+            tasks={scheduled.data ?? []}
+            hint="Drag a task here, or set a time in its details."
+            droppable
+          />
+        }
+        empty="Nothing due today. Add a task above, or plan ahead in Upcoming."
+      />
+    </ScheduleDndContext>
   )
 }
 

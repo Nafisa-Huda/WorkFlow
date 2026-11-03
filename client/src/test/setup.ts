@@ -25,3 +25,6 @@ window.ResizeObserver = class {
   unobserve() {}
   disconnect() {}
 }
+
+// cmdk scrolls the active item into view.
+Element.prototype.scrollIntoView = () => {}

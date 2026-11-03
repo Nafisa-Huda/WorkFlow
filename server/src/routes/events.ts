@@ -34,6 +34,13 @@ router.get('/', async (req, res) => {
   res.json({ events })
 })
 
+router.get('/:id', async (req, res) => {
+  const { id } = idParams.parse(req.params)
+  const event = await Event.findOne({ _id: id, userId: userId(req) })
+  if (!event) throw notFound('Event')
+  res.json({ event })
+})
+
 router.post('/', async (req, res) => {
   const event = await Event.create({ ...createEvent.parse(req.body), userId: userId(req) })
   res.status(201).json({ event })

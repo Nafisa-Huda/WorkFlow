@@ -45,3 +45,14 @@ export interface Task {
   createdAt: string
   updatedAt: string
 }
+
+export interface CalendarEvent {
+  id: string
+  title: string
+  notes: string
+  /** ISO datetimes. */
+  start: string
+  end: string
+  createdAt: string
+  updatedAt: string
+}

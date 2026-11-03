@@ -1,4 +1,5 @@
 import { createBrowserRouter, Navigate, type RouteObject } from 'react-router'
+import { FullPageSpinner } from '@/components/FullPageSpinner'
 import { GuestOnly, RequireAuth } from '@/features/auth/guards'
 import { NotFoundPage, RouteErrorPage } from '@/pages/ErrorPages'
 import { LandingPage } from '@/pages/LandingPage'
@@ -12,6 +13,8 @@ const tasksPage = (name: keyof typeof import('@/features/tasks/pages')) => async
 export const routes: RouteObject[] = [
   {
     errorElement: <RouteErrorPage />,
+    // Shown while a lazy route's code loads on the first page load.
+    HydrateFallback: FullPageSpinner,
     children: [
       { path: '/', element: <LandingPage /> },
       {
@@ -43,6 +46,12 @@ export const routes: RouteObject[] = [
               { path: '/upcoming', lazy: tasksPage('UpcomingPage') },
               { path: '/inbox', lazy: tasksPage('InboxPage') },
               { path: '/lists/:listId', lazy: tasksPage('ListPage') },
+              {
+                path: '/calendar',
+                lazy: async () => ({
+                  Component: (await import('@/features/calendar/CalendarPage')).CalendarPage,
+                }),
+              },
               { path: '/app', element: <Navigate to="/today" replace /> },
             ],
           },

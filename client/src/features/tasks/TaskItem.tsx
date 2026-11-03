@@ -1,4 +1,6 @@
-import { CalendarDays, Flag, NotebookText, Trash2 } from 'lucide-react'
+import { format } from 'date-fns'
+import { CalendarDays, Clock, Flag, NotebookText, Trash2 } from 'lucide-react'
+import type { ReactNode } from 'react'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { ListColorDot } from '@/features/lists/ListColorDot'
@@ -13,12 +15,16 @@ export function TaskItem({
   list,
   showDue = true,
   onOpen,
+  dragHandle,
+  className,
 }: {
   task: Task
   /** The task's list, when the list name should be shown. */
   list?: List
   showDue?: boolean
   onOpen: (task: Task) => void
+  dragHandle?: ReactNode
+  className?: string
 }) {
   const updateTask = useUpdateTask()
   const deleteTask = useDeleteTask()
@@ -31,6 +37,12 @@ export function TaskItem({
       <span key="due" className={cn('flex items-center gap-1', overdue && 'text-destructive')}>
         <CalendarDays className="size-3" />
         {formatDueLabel(task.dueDate)}
+      </span>
+    ),
+    task.scheduledStart && (
+      <span key="scheduled" className="flex items-center gap-1 text-primary">
+        <Clock className="size-3" />
+        {format(new Date(task.scheduledStart), 'h:mm a')}
       </span>
     ),
     task.priority !== 'none' && (
@@ -51,10 +63,12 @@ export function TaskItem({
   return (
     <li
       className={cn(
-        'group flex items-start gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-muted/60',
+        'group relative flex items-start gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-muted/60',
         pending && 'opacity-60',
+        className,
       )}
     >
+      {dragHandle}
       <Checkbox
         checked={completed}
         disabled={pending}

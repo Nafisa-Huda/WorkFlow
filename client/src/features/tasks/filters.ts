@@ -6,6 +6,9 @@ export interface TaskFilter {
   status?: 'open' | 'completed' | 'all'
   dueFrom?: string
   dueTo?: string
+  /** ISO datetimes; scheduledTo is exclusive. */
+  scheduledFrom?: string
+  scheduledTo?: string
 }
 
 /**
@@ -23,6 +26,12 @@ export function matchesFilter(task: Task, filter: TaskFilter): boolean {
     if (!task.dueDate) return false
     if (filter.dueFrom && task.dueDate < filter.dueFrom) return false
     if (filter.dueTo && task.dueDate > filter.dueTo) return false
+  }
+  if (filter.scheduledFrom || filter.scheduledTo) {
+    if (!task.scheduledStart) return false
+    const start = Date.parse(task.scheduledStart)
+    if (filter.scheduledFrom && start < Date.parse(filter.scheduledFrom)) return false
+    if (filter.scheduledTo && start >= Date.parse(filter.scheduledTo)) return false
   }
   return true
 }

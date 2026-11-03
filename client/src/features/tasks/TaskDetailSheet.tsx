@@ -1,6 +1,6 @@
-import { format, parseISO } from 'date-fns'
-import { Trash2, X } from 'lucide-react'
-import { useEffect, useEffectEvent, useState } from 'react'
+import { addMinutes, differenceInMinutes, format, parseISO } from 'date-fns'
+import { Loader2, Trash2, X } from 'lucide-react'
+import { useEffect, useEffectEvent, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
@@ -13,25 +13,49 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { useLists } from '@/features/lists/api'
+import { todayKey } from '@/lib/dates'
 import type { Task } from '@/lib/types'
-import { useDeleteTask, useUpdateTask, type TaskChanges } from './api'
+import { useDetailParams } from '@/lib/useDetailParams'
+import { useDeleteTask, useTask, useUpdateTask, type TaskChanges } from './api'
 import { ListSelect, PrioritySelect } from './TaskFields'
 
-/** Side panel for editing a task. Changes save as you go: no Save button. */
-export function TaskDetailSheet({
-  task,
-  onClose,
-}: {
-  task: Task | undefined
-  onClose: () => void
-}) {
+/**
+ * Side panel for editing a task, opened from anywhere via ?task=<id>.
+ * Changes save as you go: no Save button.
+ */
+export function TaskDetailSheet() {
+  const { taskId, closeTask } = useDetailParams()
+  const { data: task, isError } = useTask(taskId)
+
+  // A stale or foreign link (deleted task, someone else's id): just close.
+  useEffect(() => {
+    if (isError) closeTask()
+  }, [isError, closeTask])
+
   return (
-    <Sheet open={!!task} onOpenChange={(open) => !open && onClose()}>
+    <Sheet open={!!taskId} onOpenChange={(open) => !open && closeTask()}>
       <SheetContent className="w-full gap-0 sm:max-w-md">
-        {/* Keyed so local form state resets when a different task is opened. */}
-        {task && <TaskDetailForm key={task.id} task={task} onClose={onClose} />}
+        {task ? (
+          // Keyed so local form state resets when a different task is opened.
+          <TaskDetailForm key={task.id} task={task} onClose={closeTask} />
+        ) : (
+          <>
+            <SheetHeader>
+              <SheetTitle>Task details</SheetTitle>
+              <SheetDescription>Loading…</SheetDescription>
+            </SheetHeader>
+            <Loader2 className="m-auto size-5 animate-spin text-muted-foreground" />
+          </>
+        )}
       </SheetContent>
     </Sheet>
   )
@@ -43,6 +67,7 @@ function TaskDetailForm({ task, onClose }: { task: Task; onClose: () => void }) 
   const deleteTask = useDeleteTask()
   const [title, setTitle] = useState(task.title)
   const [notes, setNotes] = useState(task.notes)
+  const deleted = useRef(false)
 
   const save = (changes: TaskChanges) => updateTask.mutate({ id: task.id, changes })
 
@@ -56,6 +81,7 @@ function TaskDetailForm({ task, onClose }: { task: Task; onClose: () => void }) 
   // Closing the sheet (Esc, overlay click) unmounts the inputs without a blur event,
   // so flush any unsaved text on unmount too.
   const flushDrafts = useEffectEvent(() => {
+    if (deleted.current) return
     saveTitle()
     saveNotes()
   })
@@ -123,6 +149,8 @@ function TaskDetailForm({ task, onClose }: { task: Task; onClose: () => void }) 
           </div>
         </Field>
 
+        <ScheduleField task={task} onChange={save} />
+
         <div className="grid grid-cols-2 gap-4">
           <Field>
             <FieldLabel htmlFor="task-priority">Priority</FieldLabel>
@@ -152,6 +180,7 @@ function TaskDetailForm({ task, onClose }: { task: Task; onClose: () => void }) 
           variant="ghost"
           className="text-destructive hover:text-destructive"
           onClick={() => {
+            deleted.current = true
             deleteTask.mutate(task)
             onClose()
           }}
@@ -161,5 +190,82 @@ function TaskDetailForm({ task, onClose }: { task: Task; onClose: () => void }) 
         </Button>
       </SheetFooter>
     </>
+  )
+}
+
+const DURATIONS = [15, 30, 45, 60, 90, 120, 180]
+
+const formatDuration = (minutes: number) =>
+  minutes < 60 ? `${minutes} min` : `${minutes / 60} hr${minutes > 60 ? 's' : ''}`
+
+/**
+ * A time block for the task on the agenda. Also the keyboard-accessible way to
+ * schedule, alongside drag and drop on the Today view.
+ */
+function ScheduleField({ task, onChange }: { task: Task; onChange: (c: TaskChanges) => void }) {
+  const start = task.scheduledStart ? new Date(task.scheduledStart) : null
+  const end = task.scheduledEnd ? new Date(task.scheduledEnd) : null
+  const duration = start && end ? differenceInMinutes(end, start) : 30
+  const date = start ? format(start, 'yyyy-MM-dd') : ''
+  const time = start ? format(start, 'HH:mm') : ''
+
+  // "2026-11-03T14:00" (no offset) parses as local time.
+  const scheduleFor = (day: string, at: string, minutes = duration) => {
+    const next = new Date(`${day}T${at}`)
+    onChange({
+      scheduledStart: next.toISOString(),
+      scheduledEnd: addMinutes(next, minutes).toISOString(),
+    })
+  }
+  const clear = () => onChange({ scheduledStart: null, scheduledEnd: null })
+
+  return (
+    <Field>
+      <FieldLabel htmlFor="task-schedule-date">Schedule</FieldLabel>
+      <div className="flex gap-2">
+        <Input
+          id="task-schedule-date"
+          type="date"
+          aria-label="Scheduled date"
+          value={date}
+          onChange={(e) =>
+            e.target.value ? scheduleFor(e.target.value, time || '09:00') : clear()
+          }
+          className="min-w-0 flex-1"
+        />
+        <Input
+          type="time"
+          aria-label="Start time"
+          value={time}
+          step={900}
+          onChange={(e) => e.target.value && scheduleFor(date || todayKey(), e.target.value)}
+          className="w-28 shrink-0"
+        />
+        {start && (
+          <>
+            <Select
+              value={String(duration)}
+              onValueChange={(v) => scheduleFor(date, time, Number(v))}
+            >
+              <SelectTrigger aria-label="Duration" className="w-auto shrink-0">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {[...new Set([...DURATIONS, duration])]
+                  .sort((a, b) => a - b)
+                  .map((m) => (
+                    <SelectItem key={m} value={String(m)}>
+                      {formatDuration(m)}
+                    </SelectItem>
+                  ))}
+              </SelectContent>
+            </Select>
+            <Button variant="ghost" size="icon" onClick={clear} aria-label="Remove from schedule">
+              <X className="size-4" />
+            </Button>
+          </>
+        )}
+      </div>
+    </Field>
   )
 }

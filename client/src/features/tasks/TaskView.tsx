@@ -1,15 +1,22 @@
-import type { UseQueryResult } from '@tanstack/react-query'
 import { ChevronRight } from 'lucide-react'
-import { useMemo, useState, type ReactNode } from 'react'
+import { useMemo, type ReactNode } from 'react'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useLists } from '@/features/lists/api'
+import { DraggableTaskItem } from '@/features/agenda/dnd'
 import type { List, Task } from '@/lib/types'
+import { useDetailParams } from '@/lib/useDetailParams'
 import { cn } from '@/lib/utils'
 import type { NewTask } from './api'
 import { TaskComposer } from './TaskComposer'
-import { TaskDetailSheet } from './TaskDetailSheet'
 import { TaskItem } from './TaskItem'
+
+/** Loading state of the query (or queries) behind a view. */
+export interface ViewStatus {
+  isPending: boolean
+  isError: boolean
+  refetch: () => unknown
+}
 
 export interface TaskSection {
   id: string
@@ -21,9 +28,9 @@ export interface TaskSection {
 }
 
 /**
- * Shared layout for every task view: header, quick-add, sections, a collapsible
- * "Completed" group, and the detail sheet. Each page only decides which tasks
- * go where.
+ * Shared layout for every task view: header, quick-add, sections, and a
+ * collapsible "Completed" group, plus an optional side panel (the Today agenda).
+ * Each page only decides which tasks go where.
  */
 export function TaskView({
   title,
@@ -34,30 +41,34 @@ export function TaskView({
   composerDefaults,
   composerKey,
   showList = true,
+  draggable = false,
+  aside,
   empty,
 }: {
   title: string
   subtitle?: string
-  query: UseQueryResult<Task[]>
+  query: ViewStatus
   sections: TaskSection[]
   completed?: Task[]
   composerDefaults?: Omit<NewTask, 'title'>
   /** Changes when the view's defaults change, to reset the composer. */
   composerKey?: string
   showList?: boolean
+  /** Tasks can be dragged (onto the agenda). Requires a surrounding DndContext. */
+  draggable?: boolean
+  aside?: ReactNode
   empty: ReactNode
 }) {
   const { data: lists = [] } = useLists()
   const listsById = useMemo(() => new Map(lists.map((l) => [l.id, l])), [lists])
-  const [openTaskId, setOpenTaskId] = useState<string | null>(null)
-  // Look the task up in fresh data so the sheet reflects optimistic edits.
-  const openTask = query.data?.find((t) => t.id === openTaskId)
+  const { openTask } = useDetailParams()
 
   const listFor = (task: Task): List | undefined =>
     showList && task.listId ? listsById.get(task.listId) : undefined
   const hasOpenTasks = sections.some((s) => s.tasks.length > 0)
+  const Item = draggable ? DraggableTaskItem : TaskItem
 
-  return (
+  const main = (
     <div className="mx-auto w-full max-w-3xl px-4 py-6 sm:px-8 sm:py-10">
       <title>{`${title} · WorkFlow`}</title>
       <header className="mb-6">
@@ -105,12 +116,12 @@ export function TaskView({
                   )}
                   <ul>
                     {section.tasks.map((task) => (
-                      <TaskItem
+                      <Item
                         key={task.id}
                         task={task}
                         list={listFor(task)}
                         showDue={!section.hideDue}
-                        onOpen={(t) => setOpenTaskId(t.id)}
+                        onOpen={(t) => openTask(t.id)}
                       />
                     ))}
                   </ul>
@@ -129,7 +140,7 @@ export function TaskView({
                       key={task.id}
                       task={task}
                       list={listFor(task)}
-                      onOpen={(t) => setOpenTaskId(t.id)}
+                      onOpen={(t) => openTask(t.id)}
                     />
                   ))}
                 </ul>
@@ -138,8 +149,16 @@ export function TaskView({
           </>
         )}
       </div>
+    </div>
+  )
 
-      <TaskDetailSheet task={openTask} onClose={() => setOpenTaskId(null)} />
+  if (!aside) return main
+  return (
+    <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(320px,380px)]">
+      {main}
+      <aside className="h-[32rem] border-t lg:sticky lg:top-0 lg:h-svh lg:border-t-0 lg:border-l">
+        {aside}
+      </aside>
     </div>
   )
 }
