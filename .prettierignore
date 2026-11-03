@@ -2,5 +2,4 @@ node_modules
 dist
 coverage
 package-lock.json
-views
-public
+client/src/components/ui

@@ -4,18 +4,20 @@
   "private": true,
   "description": "Plan your day, then focus on it. A daily planner that brings tasks, calendar, and focus sessions into one view.",
   "workspaces": [
-    "server"
+    "server",
+    "client"
   ],
   "scripts": {
-    "dev": "npm run dev -w server",
-    "build": "npm run build -w server",
+    "dev": "concurrently -k -n server,client -c blue,magenta \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client && npm run build -w server",
     "start": "npm start -w server",
-    "test": "npm test -w server",
-    "lint": "npm run lint -w server",
-    "typecheck": "npm run typecheck -w server",
+    "test": "npm test --workspaces",
+    "lint": "npm run lint --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
     "format": "prettier --write ."
   },
   "devDependencies": {
+    "concurrently": "^10.0.6",
     "prettier": "^3.9.10"
   },
   "engines": {
