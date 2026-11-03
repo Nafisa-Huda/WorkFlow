@@ -31,4 +31,18 @@ describe('matchesFilter', () => {
     expect(matchesFilter(open, { dueFrom: '2026-10-31' })).toBe(false)
     expect(matchesFilter(undated, { dueTo: '2026-10-30' })).toBe(false)
   })
+
+  it('filters by scheduled time, with an exclusive end', () => {
+    const scheduled = makeTask({
+      scheduledStart: '2026-10-30T14:00:00.000Z',
+      scheduledEnd: '2026-10-30T14:30:00.000Z',
+    })
+    const range = {
+      scheduledFrom: '2026-10-30T04:00:00.000Z',
+      scheduledTo: '2026-10-31T04:00:00.000Z',
+    }
+    expect(matchesFilter(scheduled, range)).toBe(true)
+    expect(matchesFilter(undated, range)).toBe(false)
+    expect(matchesFilter(scheduled, { scheduledTo: '2026-10-30T14:00:00.000Z' })).toBe(false)
+  })
 })

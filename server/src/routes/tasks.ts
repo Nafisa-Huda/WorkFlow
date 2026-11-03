@@ -65,6 +65,13 @@ router.get('/', async (req, res) => {
   res.json({ tasks })
 })
 
+router.get('/:id', async (req, res) => {
+  const { id } = idParams.parse(req.params)
+  const task = await Task.findOne({ _id: id, userId: userId(req) })
+  if (!task) throw notFound('Task')
+  res.json({ task })
+})
+
 router.post('/', async (req, res) => {
   const body = createTask.parse(req.body)
   await assertOwnsList(userId(req), body.listId)

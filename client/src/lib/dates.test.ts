@@ -1,5 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { formatDayHeading, formatDueLabel, isOverdue, todayKey, tomorrowKey } from './dates'
+import {
+  formatDayHeading,
+  formatDueLabel,
+  isInRange,
+  isOverdue,
+  monthGrid,
+  todayKey,
+  tomorrowKey,
+} from './dates'
 
 describe('dates', () => {
   beforeEach(() => {
@@ -32,5 +40,18 @@ describe('dates', () => {
   it('treats only days before today as overdue', () => {
     expect(isOverdue('2026-10-29')).toBe(true)
     expect(isOverdue('2026-10-30')).toBe(false)
+  })
+
+  it('builds a month grid of whole weeks', () => {
+    const days = monthGrid(new Date(2026, 10, 15)) // November 2026 starts on a Sunday
+    expect(days).toHaveLength(35)
+    expect(days[0]).toEqual(new Date(2026, 10, 1))
+    expect(days.at(-1)).toEqual(new Date(2026, 11, 5))
+  })
+
+  it('checks ranges with an exclusive end', () => {
+    const range = { from: new Date(2026, 9, 30), to: new Date(2026, 9, 31) }
+    expect(isInRange(new Date(2026, 9, 30, 0).toISOString(), range)).toBe(true)
+    expect(isInRange(new Date(2026, 9, 31, 0).toISOString(), range)).toBe(false)
   })
 })

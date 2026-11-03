@@ -28,6 +28,7 @@ describe('Today page', () => {
       'GET /api/auth/me': () => json({ user }),
       'GET /api/lists': () => json({ lists: [workList] }),
       'GET /api/tasks': () => json({ tasks }),
+      'GET /api/events': () => json({ events: [] }),
     }
   }
 
@@ -86,6 +87,41 @@ describe('Today page', () => {
     )
 
     expect(screen.getByRole('checkbox', { name: 'Mark "Ship the PR" as not done' })).toBeChecked()
+  })
+
+  it('shows events and scheduled tasks on the agenda', async () => {
+    const scheduledTask = makeTask({
+      title: 'Deep work block',
+      scheduledStart: new Date(2026, 9, 30, 10).toISOString(),
+      scheduledEnd: new Date(2026, 9, 30, 11, 30).toISOString(),
+    })
+    const event = {
+      id: 'event-1',
+      title: 'Team standup',
+      notes: '',
+      start: new Date(2026, 9, 30, 9, 30).toISOString(),
+      end: new Date(2026, 9, 30, 10).toISOString(),
+      createdAt: '',
+      updatedAt: '',
+    }
+    mockApi({
+      ...baseRoutes(),
+      'GET /api/tasks': ({ url }) =>
+        json({ tasks: url.searchParams.has('scheduledFrom') ? [scheduledTask] : tasks }),
+      'GET /api/events': () => json({ events: [event] }),
+    })
+    renderApp('/today')
+
+    const agenda = await screen.findByRole('list', { name: /Schedule for Friday, October 30/ })
+    expect(await within(agenda).findByRole('button', { name: /Team standup/ })).toBeInTheDocument()
+    expect(
+      within(agenda).getByRole('button', { name: /Deep work block.*10:00–11:30 AM/ }),
+    ).toBeInTheDocument()
+
+    // Clicking an event opens it for editing.
+    await userEvent.click(within(agenda).getByRole('button', { name: /Team standup/ }))
+    expect(await screen.findByRole('dialog', { name: 'Edit event' })).toBeInTheDocument()
+    expect(screen.getByRole('textbox', { name: 'Title' })).toHaveValue('Team standup')
   })
 
   it('redirects to login when signed out', async () => {

@@ -67,6 +67,21 @@ describe('tasks', () => {
     expect(titles(completed)).toEqual(['Done'])
   })
 
+  it('filters by scheduled time range', async () => {
+    const agent = await signedInAgent(ctx.app)
+    const schedule = (title: string, start: string, end: string) =>
+      agent.post('/api/tasks').send({ title, scheduledStart: start, scheduledEnd: end }).expect(201)
+    await schedule('Morning focus', '2026-10-30T13:00:00Z', '2026-10-30T14:00:00Z')
+    await schedule('Tomorrow', '2026-10-31T13:00:00Z', '2026-10-31T14:00:00Z')
+    await agent.post('/api/tasks').send({ title: 'Unscheduled' })
+
+    const { body } = await agent
+      .get('/api/tasks')
+      .query({ scheduledFrom: '2026-10-30T04:00:00Z', scheduledTo: '2026-10-31T04:00:00Z' })
+      .expect(200)
+    expect(body.tasks.map((t: { title: string }) => t.title)).toEqual(['Morning focus'])
+  })
+
   it('validates input', async () => {
     const agent = await signedInAgent(ctx.app)
     await agent.post('/api/tasks').send({ title: '' }).expect(400)
@@ -91,6 +106,8 @@ describe('tasks', () => {
 
     const { body: malloryTasks } = await mallory.get('/api/tasks')
     expect(malloryTasks.tasks).toHaveLength(0)
+    await mallory.get(`/api/tasks/${id}`).expect(404)
+    await alice.get(`/api/tasks/${id}`).expect(200)
     await mallory.patch(`/api/tasks/${id}`).send({ title: 'pwned' }).expect(404)
     await mallory.delete(`/api/tasks/${id}`).expect(404)
 

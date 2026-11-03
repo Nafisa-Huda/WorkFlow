@@ -1,5 +1,7 @@
 import {
+  CalendarDays,
   CalendarRange,
+  Search,
   ChevronsUpDown,
   Inbox,
   LogOut,
@@ -40,7 +42,9 @@ import { useLogout, useMe } from '@/features/auth/api'
 import { useDeleteList, useLists } from '@/features/lists/api'
 import { CreateListDialog } from '@/features/lists/CreateListDialog'
 import { ListColorDot } from '@/features/lists/ListColorDot'
+import { shortcutLabel, useCommandPalette } from '@/features/command/context'
 import { useTasks } from '@/features/tasks/api'
+import { Kbd } from '@/components/ui/kbd'
 import { todayKey } from '@/lib/dates'
 
 /** Open-task counts per view, from one query that every view's optimistic updates also patch. */
@@ -64,6 +68,7 @@ const NAV = [
   { to: '/today', label: 'Today', icon: Sun, count: 'dueToday' },
   { to: '/upcoming', label: 'Upcoming', icon: CalendarRange },
   { to: '/inbox', label: 'Inbox', icon: Inbox, count: 'inbox' },
+  { to: '/calendar', label: 'Calendar', icon: CalendarDays },
 ] as const
 
 export function AppSidebar() {
@@ -73,6 +78,7 @@ export function AppSidebar() {
   const [creatingList, setCreatingList] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
+  const palette = useCommandPalette()
 
   return (
     <Sidebar>
@@ -84,6 +90,13 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton onClick={palette.open} className="text-muted-foreground">
+                  <Search />
+                  Search
+                  <Kbd className="ml-auto">{shortcutLabel}</Kbd>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
               {NAV.map((item) => {
                 const count = 'count' in item ? counts[item.count] : 0
                 return (

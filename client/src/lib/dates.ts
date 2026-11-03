@@ -1,12 +1,18 @@
 import {
   addDays,
   differenceInCalendarDays,
+  endOfMonth,
+  endOfWeek,
+  eachDayOfInterval,
   format,
   isSameYear,
   isToday,
   isTomorrow,
   isYesterday,
   parseISO,
+  startOfDay,
+  startOfMonth,
+  startOfWeek,
 } from 'date-fns'
 
 /** A calendar day in the user's local timezone, e.g. "2026-10-30". */
@@ -37,4 +43,24 @@ export function formatDayHeading(key: DateKey): string {
   if (isToday(date)) return `Today · ${full}`
   if (isTomorrow(date)) return `Tomorrow · ${full}`
   return full
+}
+
+/** [start of day, start of next day) in local time, for range queries. */
+export function dayRange(date: Date) {
+  const from = startOfDay(date)
+  return { from, to: addDays(from, 1) }
+}
+
+/** Half-open check: from <= instant < to. */
+export function isInRange(iso: string, { from, to }: { from: Date; to: Date }) {
+  const time = Date.parse(iso)
+  return time >= from.getTime() && time < to.getTime()
+}
+
+/** Every day shown on a month calendar: whole weeks, Sunday first. */
+export function monthGrid(month: Date): Date[] {
+  return eachDayOfInterval({
+    start: startOfWeek(startOfMonth(month)),
+    end: endOfWeek(endOfMonth(month)),
+  })
 }

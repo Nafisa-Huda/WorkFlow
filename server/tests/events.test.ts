@@ -53,6 +53,8 @@ describe('events', () => {
     const { body } = await alice
       .post('/api/events')
       .send({ title: 'Private', start: '2026-10-30T16:00:00Z', end: '2026-10-30T17:00:00Z' })
+    await mallory.get(`/api/events/${body.event.id}`).expect(404)
     await mallory.delete(`/api/events/${body.event.id}`).expect(404)
+    await alice.get(`/api/events/${body.event.id}`).expect(200)
   })
 })
