@@ -1,10 +1,9 @@
+/** An error with an HTTP status code. Throw it anywhere; the error handler turns it into a response. */
 export class HttpError extends Error {
-  constructor(
-    public readonly status: number,
-    message: string,
-  ) {
+  constructor(status, message) {
     super(message)
     this.name = 'HttpError'
+    this.status = status
   }
 }
 

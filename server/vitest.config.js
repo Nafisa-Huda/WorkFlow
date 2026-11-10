@@ -8,7 +8,6 @@ export default defineConfig({
       SESSION_SECRET: 'test-secret-that-is-at-least-32-characters-long',
       MONGODB_URI: 'mongodb://unused-in-tests',
     },
-    globalSetup: ['tests/globalSetup.ts'],
     // The first run downloads a MongoDB binary.
     hookTimeout: 120_000,
   },

@@ -55,7 +55,7 @@ describe('tasks', () => {
       .send({ title: 'Done', dueDate: '2026-10-30' })
     await agent.patch(`/api/tasks/${done.task.id}`).send({ completed: true })
 
-    const titles = (body: { tasks: { title: string }[] }) => body.tasks.map((t) => t.title).sort()
+    const titles = (body) => body.tasks.map((t) => t.title).sort()
 
     const { body: dueByToday } = await agent
       .get('/api/tasks')
@@ -69,7 +69,7 @@ describe('tasks', () => {
 
   it('filters by scheduled time range', async () => {
     const agent = await signedInAgent(ctx.app)
-    const schedule = (title: string, start: string, end: string) =>
+    const schedule = (title, start, end) =>
       agent.post('/api/tasks').send({ title, scheduledStart: start, scheduledEnd: end }).expect(201)
     await schedule('Morning focus', '2026-10-30T13:00:00Z', '2026-10-30T14:00:00Z')
     await schedule('Tomorrow', '2026-10-31T13:00:00Z', '2026-10-31T14:00:00Z')
@@ -79,7 +79,7 @@ describe('tasks', () => {
       .get('/api/tasks')
       .query({ scheduledFrom: '2026-10-30T04:00:00Z', scheduledTo: '2026-10-31T04:00:00Z' })
       .expect(200)
-    expect(body.tasks.map((t: { title: string }) => t.title)).toEqual(['Morning focus'])
+    expect(body.tasks.map((t) => t.title)).toEqual(['Morning focus'])
   })
 
   it('validates input', async () => {
@@ -96,6 +96,15 @@ describe('tasks', () => {
       })
       .expect(400)
     await agent.patch('/api/tasks/not-an-id').send({ title: 'x' }).expect(400)
+    await agent.get('/api/tasks/not-an-id').expect(400)
+    await agent.delete('/api/tasks/not-an-id').expect(400)
+    await agent.post('/api/tasks').send({ title: 'x', listId: 'not-an-id' }).expect(400)
+    await agent.get('/api/tasks').query({ listId: 'not-an-id' }).expect(400)
+    await agent
+      .post('/api/tasks')
+      .set('Content-Type', 'application/json')
+      .send('{"title": ')
+      .expect(400)
   })
 
   it("never exposes or modifies another user's tasks", async () => {
@@ -131,6 +140,6 @@ describe('tasks', () => {
 
     await agent.delete(`/api/lists/${list.id}`).expect(204)
     const { body: inbox } = await agent.get('/api/tasks').query({ listId: 'none' })
-    expect(inbox.tasks.map((t: { id: string }) => t.id)).toEqual([body.task.id])
+    expect(inbox.tasks.map((t) => t.id)).toEqual([body.task.id])
   })
 })
