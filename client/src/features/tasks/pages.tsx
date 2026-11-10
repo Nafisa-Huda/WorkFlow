@@ -2,7 +2,6 @@ import { format, parseISO } from 'date-fns'
 import { Navigate, useParams } from 'react-router'
 import { AgendaPanel } from '@/features/agenda/AgendaPanel'
 import { ScheduleDndContext } from '@/features/agenda/dnd'
-import { useEvents } from '@/features/events/api'
 import { useLists } from '@/features/lists/api'
 import { dayRange, formatDayHeading, isInRange, todayKey, tomorrowKey } from '@/lib/dates'
 import type { Task } from '@/lib/types'
@@ -20,7 +19,6 @@ export function TodayPage() {
     scheduledFrom: range.from.toISOString(),
     scheduledTo: range.to.toISOString(),
   })
-  const events = useEvents(range)
 
   // Today = due today (or overdue) + anything scheduled today, whatever its due date.
   const tasks = [
@@ -74,7 +72,6 @@ export function TodayPage() {
           <AgendaPanel
             title="Schedule"
             date={range.from}
-            events={events.data ?? []}
             tasks={scheduled.data ?? []}
             hint="Drag a task here, or set a time in its details."
             droppable

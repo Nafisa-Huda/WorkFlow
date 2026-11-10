@@ -1,13 +1,14 @@
 import js from '@eslint/js'
-import tseslint from 'typescript-eslint'
+import globals from 'globals'
 
-export default tseslint.config(
-  { ignores: ['dist', 'coverage'] },
+export default [
+  { ignores: ['coverage'] },
   js.configs.recommended,
-  ...tseslint.configs.recommended,
   {
+    languageOptions: { globals: globals.node },
     rules: {
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      // Express error handlers need all four args even when some are unused.
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
   },
-)
+]

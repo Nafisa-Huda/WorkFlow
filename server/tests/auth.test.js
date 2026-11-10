@@ -17,11 +17,7 @@ describe('auth', () => {
     expect(me.body.user.email).toBe('ada@example.com')
 
     const lists = await agent.get('/api/lists').expect(200)
-    expect(lists.body.lists.map((l: { name: string }) => l.name)).toEqual([
-      'Personal',
-      'Work',
-      'School',
-    ])
+    expect(lists.body.lists.map((l) => l.name)).toEqual(['Personal', 'Work', 'School'])
   })
 
   it('rejects a duplicate email regardless of case', async () => {

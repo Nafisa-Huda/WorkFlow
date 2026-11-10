@@ -127,7 +127,6 @@ export function useCreateTask() {
         scheduledStart: null,
         scheduledEnd: null,
         completedAt: null,
-        order: 0,
         createdAt: now,
         updatedAt: now,
         ...input,

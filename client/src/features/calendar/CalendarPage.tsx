@@ -2,13 +2,12 @@ import { addDays, format, parseISO, startOfMonth } from 'date-fns'
 import { useState } from 'react'
 import { useSearchParams } from 'react-router'
 import { AgendaPanel } from '@/features/agenda/AgendaPanel'
-import { useEvents } from '@/features/events/api'
 import { useLists } from '@/features/lists/api'
 import { useTasks } from '@/features/tasks/api'
 import { TaskItem } from '@/features/tasks/TaskItem'
 import { dayRange, isInRange, monthGrid, toDateKey } from '@/lib/dates'
 import { useDetailParams } from '@/lib/useDetailParams'
-import { MonthGrid, type DayMarkers } from './MonthGrid'
+import { MonthGrid } from './MonthGrid'
 
 export function CalendarPage() {
   const [params, setParams] = useSearchParams()
@@ -21,7 +20,6 @@ export function CalendarPage() {
 
   const days = monthGrid(month)
   const gridRange = { from: days[0]!, to: addDays(days.at(-1)!, 1) }
-  const events = useEvents(gridRange).data ?? []
   const scheduled =
     useTasks({
       scheduledFrom: gridRange.from.toISOString(),
@@ -34,20 +32,14 @@ export function CalendarPage() {
       status: 'open',
     }).data ?? []
 
-  // Dots on the month grid: how many events and tasks fall on each day.
-  const markers = new Map<string, DayMarkers>()
-  const bump = (key: string, field: keyof DayMarkers) => {
-    const entry = markers.get(key) ?? { events: 0, tasks: 0 }
-    entry[field]++
-    markers.set(key, entry)
-  }
-  events.forEach((e) => bump(toDateKey(new Date(e.start)), 'events'))
-  scheduled.forEach((t) => bump(toDateKey(new Date(t.scheduledStart!)), 'tasks'))
-  due.filter((t) => !t.scheduledStart).forEach((t) => bump(t.dueDate!, 'tasks'))
+  // Dots on the month grid: how many tasks fall on each day (scheduled, or due if unscheduled).
+  const taskCounts = new Map<string, number>()
+  const bump = (key: string) => taskCounts.set(key, (taskCounts.get(key) ?? 0) + 1)
+  scheduled.forEach((t) => bump(toDateKey(new Date(t.scheduledStart!))))
+  due.filter((t) => !t.scheduledStart).forEach((t) => bump(t.dueDate!))
 
   const day = dayRange(selected)
   const dayKey = toDateKey(selected)
-  const dayEvents = events.filter((e) => new Date(e.start) < day.to && new Date(e.end) > day.from)
   const dayTasks = scheduled.filter((t) => isInRange(t.scheduledStart!, day))
   const dueToday = due.filter((t) => t.dueDate === dayKey)
 
@@ -69,7 +61,7 @@ export function CalendarPage() {
         <MonthGrid
           month={month}
           selected={selected}
-          markers={markers}
+          taskCounts={taskCounts}
           onMonthChange={setMonth}
           onSelect={selectDay}
         />
@@ -97,9 +89,8 @@ export function CalendarPage() {
       <aside className="h-[36rem] border-t lg:sticky lg:top-0 lg:h-svh lg:border-t-0 lg:border-l">
         <AgendaPanel
           title={format(selected, 'EEEE, MMMM d')}
-          hint="Click a time to add an event."
+          hint="Tasks scheduled for this day."
           date={day.from}
-          events={dayEvents}
           tasks={dayTasks}
         />
       </aside>
