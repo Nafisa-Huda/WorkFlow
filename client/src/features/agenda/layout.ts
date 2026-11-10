@@ -21,7 +21,7 @@ export interface PositionedItem<T extends TimedItem> {
 }
 
 /**
- * Lays out a day's events and scheduled tasks like a calendar app: each item
+ * Lays out a day's scheduled tasks like a calendar app: each item
  * spans its time range, and items that overlap share the width in columns.
  *
  * Items are grouped into clusters of transitively overlapping items; within a

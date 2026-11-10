@@ -1,7 +1,6 @@
 import {
   CalendarDays,
   CalendarRange,
-  Search,
   ChevronsUpDown,
   Inbox,
   LogOut,
@@ -42,9 +41,8 @@ import { useLogout, useMe } from '@/features/auth/api'
 import { useDeleteList, useLists } from '@/features/lists/api'
 import { CreateListDialog } from '@/features/lists/CreateListDialog'
 import { ListColorDot } from '@/features/lists/ListColorDot'
-import { shortcutLabel, useCommandPalette } from '@/features/command/context'
+import { FocusTimer } from '@/features/focus/FocusTimer'
 import { useTasks } from '@/features/tasks/api'
-import { Kbd } from '@/components/ui/kbd'
 import { todayKey } from '@/lib/dates'
 
 /** Open-task counts per view, from one query that every view's optimistic updates also patch. */
@@ -78,7 +76,6 @@ export function AppSidebar() {
   const [creatingList, setCreatingList] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
-  const palette = useCommandPalette()
 
   return (
     <Sidebar>
@@ -90,13 +87,6 @@ export function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton onClick={palette.open} className="text-muted-foreground">
-                  <Search />
-                  Search
-                  <Kbd className="ml-auto">{shortcutLabel}</Kbd>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
               {NAV.map((item) => {
                 const count = 'count' in item ? counts[item.count] : 0
                 return (
@@ -169,6 +159,13 @@ export function AppSidebar() {
                 )
               })}
             </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup className="mt-auto">
+          <SidebarGroupLabel>Focus timer</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <FocusTimer />
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>

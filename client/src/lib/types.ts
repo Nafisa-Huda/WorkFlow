@@ -23,7 +23,6 @@ export interface List {
   id: string
   name: string
   color: ListColor
-  order: number
 }
 
 export const PRIORITIES = ['none', 'low', 'medium', 'high'] as const
@@ -41,18 +40,6 @@ export interface Task {
   scheduledStart: string | null
   scheduledEnd: string | null
   completedAt: string | null
-  order: number
-  createdAt: string
-  updatedAt: string
-}
-
-export interface CalendarEvent {
-  id: string
-  title: string
-  notes: string
-  /** ISO datetimes. */
-  start: string
-  end: string
   createdAt: string
   updatedAt: string
 }

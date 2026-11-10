@@ -5,11 +5,6 @@ import { Button } from '@/components/ui/button'
 import { monthGrid, toDateKey } from '@/lib/dates'
 import { cn } from '@/lib/utils'
 
-export interface DayMarkers {
-  events: number
-  tasks: number
-}
-
 const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 const KEY_STEPS: Record<string, number> = {
   ArrowLeft: -1,
@@ -25,13 +20,14 @@ const KEY_STEPS: Record<string, number> = {
 export function MonthGrid({
   month,
   selected,
-  markers,
+  taskCounts,
   onMonthChange,
   onSelect,
 }: {
   month: Date
   selected: Date
-  markers: Map<string, DayMarkers>
+  /** Number of tasks on each day, keyed by "YYYY-MM-DD". */
+  taskCounts: Map<string, number>
   onMonthChange: (month: Date) => void
   onSelect: (day: Date) => void
 }) {
@@ -116,15 +112,11 @@ export function MonthGrid({
           <div key={week} role="row" className="grid grid-cols-7">
             {days.slice(week * 7, week * 7 + 7).map((day) => {
               const key = toDateKey(day)
-              const marker = markers.get(key)
+              const count = taskCounts.get(key) ?? 0
               const isSelected = isSameDay(day, selected)
-              const label = [
-                format(day, 'EEEE, MMMM d'),
-                marker?.events && `${marker.events} event${marker.events > 1 ? 's' : ''}`,
-                marker?.tasks && `${marker.tasks} task${marker.tasks > 1 ? 's' : ''}`,
-              ]
-                .filter(Boolean)
-                .join(', ')
+              const label =
+                format(day, 'EEEE, MMMM d') +
+                (count ? `, ${count} task${count > 1 ? 's' : ''}` : '')
 
               return (
                 <div key={key} role="gridcell" aria-selected={isSelected} className="p-0.5">
@@ -146,16 +138,8 @@ export function MonthGrid({
                     )}
                   >
                     {format(day, 'd')}
-                    <span className="flex h-1.5 gap-0.5" aria-hidden>
-                      {!!marker?.events && (
-                        <span
-                          className={cn(
-                            'size-1.5 rounded-full bg-sky-500',
-                            isSelected && 'bg-primary-foreground',
-                          )}
-                        />
-                      )}
-                      {!!marker?.tasks && (
+                    <span className="flex h-1.5" aria-hidden>
+                      {count > 0 && (
                         <span
                           className={cn(
                             'size-1.5 rounded-full bg-primary',
