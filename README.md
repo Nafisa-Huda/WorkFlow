@@ -66,7 +66,7 @@ client/
 
 ## Running it locally
 
-You'll need **Node.js 22 or newer** and a **MongoDB** connection string (a free [MongoDB Atlas](https://www.mongodb.com/atlas) cluster or a local MongoDB).
+You'll need **Node.js 22 or newer** and a **MongoDB** connection string (a free [MongoDB Atlas](https://www.mongodb.com/) cluster or a local MongoDB).
 
 ```bash
 git clone https://github.com/Nafisa-Huda/WorkFlow.git
