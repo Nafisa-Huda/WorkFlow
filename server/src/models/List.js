@@ -14,7 +14,7 @@ export const LIST_COLORS = [
 ]
 
 // Every new account starts with these lists.
-export const DEFAULT_LISTS = [
+const DEFAULT_LISTS = [
   { name: 'Personal', color: 'violet' },
   { name: 'Work', color: 'blue' },
   { name: 'School', color: 'amber' },
